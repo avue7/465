@@ -1,0 +1,61 @@
+#!/usr/bin/env ruby								     								
+#*************************************************************************************
+# Athit Vue                   							     #
+# Program 1                                                                          #
+# Description: This ruby script takes a single regular expression as a command       #
+# line argument andd searches the current directory and all of its subdirectories    #
+# for files with names that matches the given regular expression and files that      #
+# have content that matches the given regular expression.                            #
+# *****(Direct Quote taken from Dr. Henry's website)******                           #
+#*************************************************************************************
+files = `find .` # Using backtics to get results from command
+		 # This will search directories and all of sub
+
+#take the first argument and set it to find_input variable
+input = ARGV[0]
+find_input = Regexp.new(input, Regexp::IGNORECASE) # Need this for REGEX to work properly
+						   # Without this, input is a normal string
+						   # Need to ignore case-sensitivity.		
+#split the files and store it in array splitted_files
+splitted_files = files.split(' ')
+
+#sort the splitted files first
+sorted_splitted_files = splitted_files.sort
+
+puts  "Files with names that matches <#{input}>" 
+sorted_splitted_files.map do |output_files|  # Use Array Map to search elements one at a time 
+ if output_files =~ /(\.rb$|\.erb$|\.js$|\.css$|\.html$|\.yml$|\.txt$)/ and output_files.match(find_input)
+  puts "  #{output_files}" # Match is found, then output it
+ end
+end
+
+puts "**************************************************"   
+puts "Files with content that matches <#{input}>"
+
+array_content =[] # Declaring and initializing global variable array for use later
+
+sorted_splitted_files.map do |content_files| # Now we look for regex in the contents of files
+ if content_files =~ /(\.rb$|\.erb$|\.js$|\.css$|\.html$|\.yml$|\.txt$)/ and  File.open(content_files).read().match(find_input)
+  array_content.push(content_files) # Push them onto the array
+ end			            # Had to use this for correct outputting and selection
+end
+
+array_content.map do |array_files|  # Now new array map only contains items we are interested in 
+ if array_files =~ /(\.rb$|\.erb$|\.js$|\.css$|\.html$|\.yml$|\.txt$)/ and File.open(array_files).read().match(find_input)
+  puts "#{array_files}" 
+  open(array_files).each_with_index  do |x, index| # Open the file of each file with its line number
+   if x.match(find_input)                          # Double checking to make sure REGEX matches
+    printf "  #{index + 1}:%s", x		   # Output index and line contents
+   end
+  end
+  if array_files == array_content.last  # SPENT NUMBEROUS OF HRS JUST TO GET THIS RIGHT
+   break				# CRAP, OVER THOUGHT ABOUT IT. 
+  else                    # This is the reason for the global array. It checks to see if current file is the 
+    puts "--------------------------------------------------" # last file of the array. If it is, then break
+  end							      # do nothing, or go to next. I chose break.  
+ end
+end
+#  p array_content.first debugg
+#  p array_content.last  debugg
+
+
