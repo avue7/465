@@ -6,7 +6,7 @@ Fill in each step with a word that differs from the word in the previous step by
 <br>
 <br>
 
-Step 0: <%= @start_word %>
+Step 0:&nbsp;&nbsp; <%= @start_word %>
 <%= form_tag(check_path, method:"get") do %>
   <%= label_tag(:step1, "Step 1: ") %>
    <%= text_field_tag(:step1) %><br>
@@ -20,5 +20,5 @@ Step 0: <%= @start_word %>
    <%= text_field_tag(:step5) %>
   <%= submit_tag("Check Answer") %><br>
 <% end %>
-Goal: <%= @end_word %>
+Goal:&nbsp;&nbsp;&nbsp; <%= @end_word %>
 <br>

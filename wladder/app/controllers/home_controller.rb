@@ -1,6 +1,8 @@
 class HomeController < ApplicationController
   def index
-    
+    load "#{Rails.root}/lib/ladder.rb"
+      @start_word = dictionary.shuffle.first
+      @end_word = dictionary.shuffle.last
   end
 
   def show
