@@ -10,5 +10,5 @@ def index
     else
       @result = ["Illegal URL"];
     end
-  end
+   end
 end
