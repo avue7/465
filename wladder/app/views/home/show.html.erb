@@ -3,12 +3,8 @@
 <br>
 <br>
 <h3>Your Guesses Are:</h3>
-<p><%= @start_word %></p>
-<p><%= @step_1 %></p>
-<p><%= @step_2 %></p>
-<p><%= @step_3 %></p>
-<p><%= @step_4 %></p>
-<p><%= @step_5 %></p>
-<p><%= @end_word  %></p>
-
-
+<p>Start:&nbsp;&nbsp;&nbsp;<%=" #{@start_word}" %><br>
+<% @steps.each.with_index(1) do |x, index| %>
+<%= "Step #{index}: " + x %><br>
+<%end%>
+End:&nbsp;&nbsp;&nbsp;&nbsp; <%= "#{@end_word}" %></p>
