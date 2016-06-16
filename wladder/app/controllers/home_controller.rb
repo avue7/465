@@ -13,10 +13,11 @@ class HomeController < ApplicationController
   def show
     # Load the file in the library for use of helper functions
     load "#{Rails.root}/lib/ladder.rb"
-    @status_winner == false
+    # EVERYONE IS A WINNER!!!!!! UNTIL YOU LOSE!
     @steps = []
     # Set the symbols to the member variables so we can use them outside
     # of this function and class.
+    @winner = 0
     @start_word = params[:start_word]
     @step_1 = params[:step1] 
     @step_2 = params[:step2]
@@ -40,5 +41,17 @@ class HomeController < ApplicationController
     if params[:step5].present?
       @steps.push(@step_5)
     end
- end
-end
+    # DETERMINE if we have a winner.
+    @steps_to_check = []
+    @steps_to_check.push(@start_word)
+    @steps.each { |step| @steps_to_check.push(step)}
+    @steps_to_check.push(@end_word)
+    
+    if legal @steps_to_check
+      @winner = @winner + 1
+    end
+    if @steps.size == 0
+      @winner = @winner - 1
+    end
+ end 
+end										

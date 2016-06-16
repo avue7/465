@@ -8,3 +8,9 @@
 <%= "Step #{index}: " + x %><br>
 <%end%>
 End:&nbsp;&nbsp;&nbsp;&nbsp; <%= "#{@end_word}" %></p>
+<% if @winner >= 1  %>
+<h3><%=  "Congratulations....You WIN!!!!" %></h3>
+<%end%>
+<% if @winner <= 0 %>
+<h3><%= "Incorrect. You Lose!" %></h3>
+<% end %>
