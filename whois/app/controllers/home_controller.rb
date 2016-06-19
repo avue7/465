@@ -1,5 +1,5 @@
 class HomeController < ApplicationController
-def index
+  def index
     # don't need to do anything here
   end
 
@@ -10,5 +10,6 @@ def index
     else
       @result = ["Illegal URL"];
     end
-   end
+  end
+
 end
