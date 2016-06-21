@@ -13,7 +13,7 @@ th, td {
   <thead>
     <tr>
       <th>Topics:</th>
-      <th colspan="3"> OPTIONS: </th>
+      <th colspan="3"> Options: </th>
     </tr>
   </thead>
 
@@ -23,7 +23,7 @@ th, td {
         <td><%= reference.topic %></td>
         <td><%= link_to 'Show', reference %></td>
         <td><%= link_to 'Edit', edit_reference_path(reference) %></td>
-        <td><%= link_to 'Destroy', reference, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <td><%= link_to 'Delete', reference, method: :delete, data: { confirm: 'Are you sure?' } %></td>
       </tr>
     <% end %>
   </tbody>
@@ -31,4 +31,10 @@ th, td {
 
 <br>
 
+<form action=new_reference_path>
+    <input type="submit" value="New Reference">
+</form>
 <%= link_to 'New Reference', new_reference_path %></center>
+<button type="button" onclick=link_to 'New Reference', new_reference_path>
+Reference</button>
+
