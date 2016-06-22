@@ -1,0 +1,30 @@
+<%= form_for(@reference) do |f| %>
+  <% if @reference.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@reference.errors.count, "error") %> prohibited this professor from being saved:</h2>
+
+      <ul>
+      <% @reference.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field"> <b>URL:</b><br> 
+   &nbsp; &nbsp;  <%= f.text_field :URL %>
+  </div>
+  <br>
+  <div class="field"><b>TOPIC:</b><br>
+   &nbsp; &nbsp; <%= f.text_field :topic %>
+  </div>
+  <br>
+  <div class="field"><b>ANNOTATION:</b><br>
+   &nbsp; &nbsp; <%= f.text_field :annotation %>
+  </div>
+  <br>
+  <div class="actions">
+   &nbsp;&nbsp; <%= f.submit %>
+  </div>
+  <br>
+<% end %>

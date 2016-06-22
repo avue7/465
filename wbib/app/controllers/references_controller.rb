@@ -10,6 +10,25 @@ class ReferencesController < ApplicationController
   def show 
    @reference = Reference.find(params[:id])
   end
+  
+  # GET /references/1/edit
+  def edit
+   @reference = Reference.find(params[:id])
+  end
+  
+  # PATCH/PUT references/1
+  def update
+   @reference = Reference.find(params[:id])
+   if @reference.update(reference_params)
+     redirect_to @reference, notice: 'Reference was successfully updated.'
+   else
+     render :edit
+   end
+  end
+
+
+
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

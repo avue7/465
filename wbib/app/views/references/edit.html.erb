@@ -1,6 +1,10 @@
-<h1>Editing professor</h1>
-
+<center><h1>Editing Reference For Topic <q><%= " " + @reference.topic %></q></h1></center>
+<style>
+body {
+    background-color: yellow;
+}
+</style>
 <%= render 'form' %>
 
-<%= link_to 'Show this Professor', @professor %> |
-<%= link_to 'Show all Professors', professors_path %>
+<%= link_to 'Back to Reference Page', @reference %> |
+<%= link_to 'Show all topics', references_path %>
