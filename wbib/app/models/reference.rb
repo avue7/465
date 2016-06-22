@@ -1,12 +1,16 @@
 class Reference < ActiveRecord::Base
-  before_validation :my_function
   validates :URL, presence: true
   validates :topic, presence: true
   validates :annotation, presence: true
-
+ 
+  after_validation :my_function
   def my_function
     unless self.URL.include?("http://") || self.URL.include?("https://")
-      self.URL = "http://" + self.URL
+      if self.URL.blank?
+        self.URL = ""
+      else
+        self.URL = "http://" + self.URL
+      end
     end
   end
 end
