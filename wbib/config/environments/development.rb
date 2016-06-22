@@ -37,6 +37,9 @@ Rails.application.configure do
   config.assets.raise_runtime_errors = true
 
   BetterErrors::Middleware.allow_ip! "0.0.0.0/0" 
+  
+  # Setting timezone to match the correct zone for us: PACIFIC
+  config.time_zone = "Tijuana"
 
   # Raises error for missing translations
   # config.action_view.raise_on_missing_translations = true
