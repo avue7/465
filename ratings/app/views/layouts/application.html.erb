@@ -8,9 +8,6 @@
 </head>
 <body>
 
-<%= yield %>
-
-</body>
 <p class="notice"><%= notice %></p>
 <p class="alert"><%= alert %></p>
 
@@ -23,4 +20,8 @@ Signed in as <%= current_user.email %>. Not you?
 <%= link_to "Sign in", new_user_session_path %>
 <% end %>
 </div>
+
+<%= yield %>
+
+</body>
 </html>
