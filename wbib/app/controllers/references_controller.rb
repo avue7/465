@@ -1,5 +1,5 @@
 class ReferencesController < ApplicationController
- # before_action :set_reference, only: [:show, :edit, :destroy]
+  before_action :set_reference, only: [:show, :edit, :destroy]
 
   #GET /references
   def index
