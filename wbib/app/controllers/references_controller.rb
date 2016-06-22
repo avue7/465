@@ -1,6 +1,5 @@
 class ReferencesController < ApplicationController
- # before_action :set_reference, only: [:show, :edit, :destroy]
- # before_action :sanitize_website
+  before_action :set_reference, only: [:show, :edit, :destroy]
   #GET /references
   def index
     @references = Reference.all
@@ -54,12 +53,6 @@ class ReferencesController < ApplicationController
     @reference = Reference.find(params[:id])
    end
     # Never trust parameters from the scary internet, only allow the white list through.
-  def sanitize_website
-    unless self.website.include?("http://") || self.website.include?("https://")
-      self.website = "http://" + self.website
-    end
-  end
-
   def reference_params
     params.require(:reference).permit(:URL, :topic, :annotation)
   end
