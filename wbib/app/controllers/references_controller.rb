@@ -31,6 +31,7 @@ class ReferencesController < ApplicationController
     @reference = Reference.new
   end
   
+  # POST /reference
   def create
     @reference = Reference.new(params.require(:reference).permit(:URL, :topic, :annotation))
     if @reference.save
@@ -38,6 +39,13 @@ class ReferencesController < ApplicationController
     else
       render :new
     end
+  end
+
+  # DELETE /resources/1
+  def destroy
+    @reference = Reference.find(params[:id])
+    @reference.destroy
+      redirect_to references_path, notice: 'Reference was successfully deleted.'
   end
 
   private
