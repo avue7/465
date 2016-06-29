@@ -33,7 +33,7 @@ class RatingsController < ApplicationController
     @rating = @professor.ratings.new(rating_params)
 
     if @rating.save
-      redirect_to professor_url(@professor) , notice: 'Rating was successfully created.' 
+      redirect_to professor_url(@professor) , notice: 'Rating was successfully created.'
     else
       render :new
     end
@@ -53,7 +53,7 @@ class RatingsController < ApplicationController
   # DELETE /ratings/1
   def destroy
     @rating.destroy
-    redirect_to professor_url(@rating.professor) , notice: 'Rating was successfully destroyed.' 
+    redirect_to professor_url(@rating.professor) , notice: 'Rating was successfully destroyed.'
   end
 
   private
