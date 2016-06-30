@@ -1,20 +1,37 @@
 <p id="notice"><%= notice %></p>
+<!-- Check to see if user is logged in, if so let them upload and edit profile -->
+<% if user_signed_in? == true %>
 <%= link_to 'New Image', new_image_path %> |
 <%= link_to 'Edit Profile', edit_user_registration_path %>
+<% else %> <!-- If user not log in give them option to log in or sign up -->
+<%= link_to 'Log In', new_user_session_path %> |
+<%= link_to 'Sign Up', new_user_registration_path %>
+<% end %>
+<br>
+ 
+<% if user_signed_in? == true %>
+<center><h1><%= current_user.name + "'s" + " Private Images" %></h1></center>
+<p>   <% @images.each do |image| %>
+      <% if image.user_id == @user %>
+         <%= image_tag root_url + "/images/" + image.filename, size: "100x100", alt: image.filename %>
+ 	 <%= image.filename %>
+	 <%= link_to 'Show', image %>
+         <%= link_to 'Edit', edit_image_path(image) %>
+         <%= link_to 'Destroy', image, method: :delete, data: { confirm: 'Are you sure?' } %>
+      <% else %>
+         <% next %>
+      <% end %>
+   <% end %>
+<% end %></p>
+<br>i
 
-<h1>Public Images</h1>
-
-    <% @images.each do |image| %>
-        <% if image.private == "f" %>
-        <%= image_tag root_url + "/images/" + image.filename, size: "100x100", alt: image.filename %>
-        <span class="caption">
-	Owner:<%= image.user_id %>
-        </span>
-	<% else %>
-        <% next %>
-        <% end %>
-        <%= link_to 'Show', image %>
-        <%= link_to 'Edit', edit_image_path(image) %>
-        <%= link_to 'Destroy', image, method: :delete, data: { confirm: 'Are you sure?' } %>
-    <% end %>
-
+<center><h1>Public Images<h1></center>
+<p><% @images.each do |image| %>
+  <% if image.private == "f" %>
+     <%= image_tag root_url + "/images/" + image.filename, size: "100x100", alt: image.filename %>
+     Owner:<%= image.user_id %>
+     <%= image.filename %>
+  <% else %>
+     <% next %>
+  <% end %>
+<% end %></p>

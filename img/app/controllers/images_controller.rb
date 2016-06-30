@@ -4,6 +4,9 @@ class ImagesController < ApplicationController
   # GET /images
   def index
     @images = Image.all
+    if user_signed_in? == true
+      @user = current_user.id
+    end
   end
 
   # GET /images/1
