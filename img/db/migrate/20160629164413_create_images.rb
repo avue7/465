@@ -1,7 +1,7 @@
 class CreateImages < ActiveRecord::Migration
   def change
     create_table :images do |t|
-      t.string :filname
+      t.string :filename
       t.string :private
       t.integer :user_id
 

@@ -2,13 +2,11 @@ class ImagesController < ApplicationController
   before_action :set_image, only: [:show, :edit, :update, :destroy]
 
   # GET /images
-  # GET /images.json
   def index
     @images = Image.all
   end
 
   # GET /images/1
-  # GET /images/1.json
   def show
   end
 
@@ -22,32 +20,32 @@ class ImagesController < ApplicationController
   end
 
   # POST /images
-  # POST /images.json
   def create
     @image = Image.new(image_params)
+    @image.generate_filename # a function you write to generate a random filename
+			     # and put it in the images "filename" variable
+    @image.user = current_user
+    
+    @uploaded_io = params[:image][:uploaded_file]
+    
+    File.open(Rails.root.join('public', 'images', @image.filename), 'wb') do |file|
+        file.write(@uploaded_io.read)
+    end
 
-    respond_to do |format|
-      if @image.save
-        format.html { redirect_to @image, notice: 'Image was successfully created.' }
-        format.json { render :show, status: :created, location: @image }
-      else
-        format.html { render :new }
-        format.json { render json: @image.errors, status: :unprocessable_entity }
-      end
+    if @image.save
+      redirect_to @image, notice: 'Image was successfully created.'
+    else
+      render :new
     end
   end
 
   # PATCH/PUT /images/1
   # PATCH/PUT /images/1.json
   def update
-    respond_to do |format|
-      if @image.update(image_params)
-        format.html { redirect_to @image, notice: 'Image was successfully updated.' }
-        format.json { render :show, status: :ok, location: @image }
-      else
-        format.html { render :edit }
-        format.json { render json: @image.errors, status: :unprocessable_entity }
-      end
+    if @image.update(image_params)
+      redirect_to @image, notice: 'Image was successfully updated.'
+    else
+      render :edit
     end
   end
 
@@ -55,10 +53,7 @@ class ImagesController < ApplicationController
   # DELETE /images/1.json
   def destroy
     @image.destroy
-    respond_to do |format|
-      format.html { redirect_to images_url, notice: 'Image was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+      redirect_to images_url, notice: 'Image was successfully destroyed.'
   end
 
   private
@@ -69,6 +64,7 @@ class ImagesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def image_params
-      params.require(:image).permit(:filname, :private, :user_id)
+      params.require(:image).permit(:filename, :private, :user_id)
     end
+    
 end

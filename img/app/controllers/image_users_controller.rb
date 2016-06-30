@@ -25,40 +25,26 @@ class ImageUsersController < ApplicationController
   # POST /image_users.json
   def create
     @image_user = ImageUser.new(image_user_params)
-
-    respond_to do |format|
-      if @image_user.save
-        format.html { redirect_to @image_user, notice: 'Image user was successfully created.' }
-        format.json { render :show, status: :created, location: @image_user }
-      else
-        format.html { render :new }
-        format.json { render json: @image_user.errors, status: :unprocessable_entity }
-      end
+    if @image_user.save
+      redirect_to @image_user, notice: 'Image user was successfully created.'
+    else
+       render :new
     end
   end
 
   # PATCH/PUT /image_users/1
-  # PATCH/PUT /image_users/1.json
   def update
-    respond_to do |format|
-      if @image_user.update(image_user_params)
-        format.html { redirect_to @image_user, notice: 'Image user was successfully updated.' }
-        format.json { render :show, status: :ok, location: @image_user }
-      else
-        format.html { render :edit }
-        format.json { render json: @image_user.errors, status: :unprocessable_entity }
-      end
+    if @image_user.update(image_user_params)
+       redirect_to @image_user, notice: 'Image user was successfully updated.'
+    else
+       render :edit
     end
   end
 
   # DELETE /image_users/1
-  # DELETE /image_users/1.json
   def destroy
     @image_user.destroy
-    respond_to do |format|
-      format.html { redirect_to image_users_url, notice: 'Image user was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to image_users_url, notice: 'Image user was successfully destroyed.'
   end
 
   private

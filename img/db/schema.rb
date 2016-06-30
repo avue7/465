@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20160629165940) do
   add_index "image_users", ["user_id_id"], name: "index_image_users_on_user_id_id"
 
   create_table "images", force: :cascade do |t|
-    t.string   "filname"
+    t.string   "filename"
     t.string   "private"
     t.integer  "user_id"
     t.datetime "created_at", null: false

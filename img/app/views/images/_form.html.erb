@@ -1,3 +1,4 @@
+<!-- app/views/images#_form -->
 <%= form_for(@image) do |f| %>
   <% if @image.errors.any? %>
     <div id="error_explanation">
@@ -11,9 +12,12 @@
     </div>
   <% end %>
 
+  <div>
+  <%= f.file_field :uploaded_file %>
+  </div>
   <div class="field">
-    <%= f.label :filname %><br>
-    <%= f.text_field :filname %>
+    <%= f.label :filename %><br>
+    <%= f.text_field :filename %>
   </div>
   <div class="field">
     <%= f.label :private %><br>
