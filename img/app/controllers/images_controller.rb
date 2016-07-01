@@ -12,8 +12,9 @@ class ImagesController < ApplicationController
 
   # GET /images/1
   def show
+    load "#{Rails.root}/db/words.rb"
     @image = Image.find(params[:id])
-       
+    @users = User.all
   end
   # GET /images/new
   def new
@@ -23,17 +24,13 @@ class ImagesController < ApplicationController
   # GET /images/1/edit
   def edit
     @image = Image.find(params[:id])
-    if @image.private?
-      @is_private
-    else
-      @is_not_private
-    end
+    @image.user = current_user 
   end
 
   # POST /images
   def create
     @image = Image.new(image_params)
-    @image.generate_filename # a function you write to generate a random filename
+    generate_filename # a function you write to generate a random filename
 			     # and put it in the images "filename" variable
     @image.user = current_user
     
@@ -42,7 +39,6 @@ class ImagesController < ApplicationController
     File.open(Rails.root.join('public', 'images', @image.filename), 'wb') do |file|
         file.write(@uploaded_io.read)
     end
-
     if @image.save
       redirect_to @image, notice: 'Image was successfully created.'
     else
@@ -51,7 +47,8 @@ class ImagesController < ApplicationController
   end
 
   def generate_filename
-    @image.filename = (0...50).map { ('a'..'z').to_a[rand(26)] }.join
+    @random_string = Array.new(32){rand(36).to_s(36)}.join
+    @image.filename = @random_string
   end
   # PATCH/PUT /images/1
   def update

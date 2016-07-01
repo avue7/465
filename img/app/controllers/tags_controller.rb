@@ -3,7 +3,9 @@ class TagsController < ApplicationController
 
   # GET /tags
   def index
-    @tags = Tag.all
+    load "#{Rails.root}/db/words.rb"
+    @tag = gen_tag
+
   end
 
   # GET /tags/1
@@ -43,6 +45,16 @@ class TagsController < ApplicationController
     @tag.destroy
     redirect_to tags_url, notice: 'Tag was successfully destroyed.'
   end
+
+  def gen_tag
+    str = String.new
+    len = rand(4) + 1
+    for i in 1..len
+      str += $words.sample + " "
+    end
+    return str
+  end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.
