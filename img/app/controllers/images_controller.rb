@@ -7,10 +7,13 @@ class ImagesController < ApplicationController
     if user_signed_in? == true
       @user = current_user.id
     end
+    @users = []
+    @users = User.all
   end
 
   # GET /images/1
   def show
+    @image = Image.find(params[:id])
   end
 
   # GET /images/new
@@ -20,6 +23,7 @@ class ImagesController < ApplicationController
 
   # GET /images/1/edit
   def edit
+    @image = Image.find(params[:id])
   end
 
   # POST /images

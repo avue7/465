@@ -10,28 +10,60 @@
 <br>
  
 <% if user_signed_in? == true %>
-<center><h1><%= current_user.name + "'s" + " Private Images" %></h1></center>
-<p>   <% @images.each do |image| %>
+<center><h1><%= current_user.name + "'s" + " Images" %></h1></center>
+ <% @images.each do |image| %>
       <% if image.user_id == @user %>
-         <%= image_tag root_url + "/images/" + image.filename, size: "100x100", alt: image.filename %>
- 	 <%= image.filename %>
-	 <%= link_to 'Show', image %>
+         <div class="image">
+	 <%= link_to (image_tag root_url + "/images/" + image.filename, size: "100x100", alt: image.filename), image %></a>
+ 	 <span class="caption">
+	 <center><%= image.filename %></center>
          <%= link_to 'Edit', edit_image_path(image) %>
-         <%= link_to 'Destroy', image, method: :delete, data: { confirm: 'Are you sure?' } %>
+         <%= link_to 'Destroy', image, method: :delete, data: { confirm: 'Are you sure?' } %></span></div>
       <% else %>
          <% next %>
       <% end %>
    <% end %>
-<% end %></p>
-<br>i
+<% end %>
+<br>
+
+<% if user_signed_in? == true %>
+<center><h1><%="Private Images " + current_user.name + " Can See" %></h1></center>
+ <% @images.each do |image| %>    
+     <% if image.user_id == @user %>
+         <div class="image">
+	 <%= link_to (image_tag root_url + "/images/" + image.filename, size: "100x100", alt: image.filename), image %>
+ 	 <span class="caption">
+	 <center><%= image.filename %></center>
+         <% @users.each do |owner| %>
+         <% if owner.id == image.user_id %> 
+	   Owner is: <%= owner.name %>
+	 <% end %>
+         <% end %>
+	 </span>
+	 </div>
+     <% else %>
+         <% next %>
+     <% end %>
+   <% end %>
+<% end %>
+<br>
 
 <center><h1>Public Images<h1></center>
-<p><% @images.each do |image| %>
+<% @images.each do |image| %>
   <% if image.private == "f" %>
-     <%= image_tag root_url + "/images/" + image.filename, size: "100x100", alt: image.filename %>
-     Owner:<%= image.user_id %>
-     <%= image.filename %>
+     <div class="image">
+     <%= link_to (image_tag root_url + "/images/" + image.filename, size: "100x100", alt: image.filename), image %>
+     <span class="caption">
+     <center><%= image.filename %><br>
+     <% @users.each do |owner| %>
+         <% if owner.id == image.user_id %> 
+	   Owner is: <%= owner.name %>
+	 <% end %>
+     <% end %>
+     </center>
+     <span>
+     </div>
   <% else %>
      <% next %>
   <% end %>
-<% end %></p>
+<% end %>

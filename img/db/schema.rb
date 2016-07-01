@@ -25,7 +25,7 @@ ActiveRecord::Schema.define(version: 20160629165940) do
 
   create_table "images", force: :cascade do |t|
     t.string   "filename"
-    t.string   "private"
+    t.boolean  "private"
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false

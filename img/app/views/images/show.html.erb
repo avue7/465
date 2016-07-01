@@ -15,7 +15,7 @@
   <%= @image.user_id %>
 </p>
 
-<%= image_tag root_url + "/images/" + @image.filename, size: "100x100", alt: @image.filename %>
+<%= image_tag root_url + "/images/" + @image.filename, size: "1000x1000", alt: @image.filename %>
 
 <%= link_to 'Edit', edit_image_path(@image) %> |
 <%= link_to 'Back', images_path %>
