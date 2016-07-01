@@ -14,14 +14,14 @@
 ActiveRecord::Schema.define(version: 20160629165940) do
 
   create_table "image_users", force: :cascade do |t|
-    t.integer  "image_id_id"
-    t.integer  "user_id_id"
-    t.datetime "created_at",  null: false
-    t.datetime "updated_at",  null: false
+    t.integer  "image_id"
+    t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
-  add_index "image_users", ["image_id_id"], name: "index_image_users_on_image_id_id"
-  add_index "image_users", ["user_id_id"], name: "index_image_users_on_user_id_id"
+  add_index "image_users", ["image_id"], name: "index_image_users_on_image_id"
+  add_index "image_users", ["user_id"], name: "index_image_users_on_user_id"
 
   create_table "images", force: :cascade do |t|
     t.string   "filename"

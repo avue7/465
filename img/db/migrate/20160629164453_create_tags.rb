@@ -2,7 +2,7 @@ class CreateTags < ActiveRecord::Migration
   def change
     create_table :tags do |t|
       t.string :str
-      t.integer :image_id
+      t.references :image
 
       t.timestamps null: false
     end
