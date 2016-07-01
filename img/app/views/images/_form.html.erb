@@ -19,14 +19,16 @@
     <%= f.label :filename %><br>
     <%= f.text_field :filename %>
   </div>
-  <div class="field">
-    <%= f.label :private %><br>
-    <%= f.text_field :private %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
-  </div>
+  <% if @image.private? %>
+    This image is currently marked as <strong><font color="red">PRIVATE</font>.
+    </strong><br>
+    Mark image as  <strong><font color="blue">PUBLIC</font></strong>?
+    <%= f.check_box :private, {checked: :private},"false", "true" %>
+  <% else %>
+    This image is currently marked as <strong><font color="blue">PUBLIC</font></strong>.<br>
+    Mark image as <strong><font color="red">PRIVATE</font></strong>?
+    <%= f.check_box :private %>
+  <% end %>
   <div class="actions">
     <%= f.submit %>
   </div>

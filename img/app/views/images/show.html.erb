@@ -1,21 +1,20 @@
-<p id="notice"><%= notice %></p>
+<center><p id="notice"><%= notice %></p>
+<!-- Check to see if user is logged in, if so let them upload and edit profile -->
+<% if user_signed_in? == true %>
+<%= link_to 'New Image', new_image_path %> |
+<%= link_to 'Edit Profile', edit_user_registration_path %>
+<% else %> <!-- If user not log in give them option to log in or sign up -->
+<%= link_to 'Log In', new_user_session_path %> |
+<%= link_to 'Sign Up', new_user_registration_path %>
+<% end %>
+</center>
+<br>
+<div class="image">
+  <%= image_tag root_url + "/images/" + @image.filename, size: "500x500", alt: @image.filename %>
+<span class="caption">
+  <%= link_to 'Edit', edit_image_path(@image) %>
+  <%= link_to 'Back', images_path %>
+</span></div>
 
-<p>
-  <strong>Filename:</strong>
-  <%= @image.filename %>
-</p>
+  <center><%= link_to 'Back', images_path %></center>
 
-<p>
-  <strong>Private:</strong>
-  <%= @image.private %>
-</p>
-
-<p>
-  <strong>User:</strong>
-  <%= @image.user_id %>
-</p>
-
-<%= image_tag root_url + "/images/" + @image.filename, size: "1000x1000", alt: @image.filename %>
-
-<%= link_to 'Edit', edit_image_path(@image) %> |
-<%= link_to 'Back', images_path %>

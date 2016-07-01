@@ -50,7 +50,9 @@
 
 <center><h1>Public Images<h1></center>
 <% @images.each do |image| %>
-  <% if image.private == "f" %>
+  <% if image.private? %>
+     <% next %>
+  <% else %>
      <div class="image">
      <%= link_to (image_tag root_url + "/images/" + image.filename, size: "100x100", alt: image.filename), image %>
      <span class="caption">
@@ -63,7 +65,5 @@
      </center>
      <span>
      </div>
-  <% else %>
-     <% next %>
   <% end %>
 <% end %>

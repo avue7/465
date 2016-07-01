@@ -7,15 +7,14 @@ class ImagesController < ApplicationController
     if user_signed_in? == true
       @user = current_user.id
     end
-    @users = []
     @users = User.all
   end
 
   # GET /images/1
   def show
     @image = Image.find(params[:id])
+       
   end
-
   # GET /images/new
   def new
     @image = Image.new
@@ -24,6 +23,11 @@ class ImagesController < ApplicationController
   # GET /images/1/edit
   def edit
     @image = Image.find(params[:id])
+    if @image.private?
+      @is_private
+    else
+      @is_not_private
+    end
   end
 
   # POST /images
@@ -46,8 +50,10 @@ class ImagesController < ApplicationController
     end
   end
 
+  def generate_filename
+    @image.filename = (0...50).map { ('a'..'z').to_a[rand(26)] }.join
+  end
   # PATCH/PUT /images/1
-  # PATCH/PUT /images/1.json
   def update
     if @image.update(image_params)
       redirect_to @image, notice: 'Image was successfully updated.'
@@ -57,7 +63,6 @@ class ImagesController < ApplicationController
   end
 
   # DELETE /images/1
-  # DELETE /images/1.json
   def destroy
     @image.destroy
       redirect_to images_url, notice: 'Image was successfully destroyed.'
@@ -73,5 +78,4 @@ class ImagesController < ApplicationController
     def image_params
       params.require(:image).permit(:filename, :private, :user_id)
     end
-    
-end
+  end 
