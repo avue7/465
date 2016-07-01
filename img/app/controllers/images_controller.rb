@@ -8,13 +8,16 @@ class ImagesController < ApplicationController
       @user = current_user.id
     end
     @users = User.all
+    @tags = Tag.all
   end
 
   # GET /images/1
   def show
     load "#{Rails.root}/db/words.rb"
     @image = Image.find(params[:id])
+    @image_owner = current_user
     @users = User.all
+    @tags  = Tag.all
   end
   # GET /images/new
   def new

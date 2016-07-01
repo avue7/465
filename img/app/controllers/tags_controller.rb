@@ -5,7 +5,6 @@ class TagsController < ApplicationController
   def index
     load "#{Rails.root}/db/words.rb"
     @tag = gen_tag
-
   end
 
   # GET /tags/1

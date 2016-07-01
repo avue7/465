@@ -13,14 +13,25 @@
 <center><%= image_tag root_url + "/images/" + @image.filename, size: "500x500", alt: @image.filename %></center>
 <center><span class="caption">
 <% @users.each do |owner| %>
-  <% if owner.id == @image.user_id %>
-      Owner is: <%= owner.name %>
-      <%= link_to 'Edit', edit_image_path(@image) %>
+  <% if((owner.id == @image.user_id) and (@image.user.name != current_user.name)) %>
+    <font color="blue"> Owner is:</font> <%= owner.name %>
   <% end %>
 <% end %><br>
-
-<%= @image.tags.map {|tag| tag.str} %>
-  <%= link_to 'Back', images_path %>
+<% if !@image.tags.empty? %>
+<font color="blue"><b>TAGS:</b></font>
+<% @image.tags.each do |tag| %>
+  <% if @image.tags.last == tag %>
+     <%= tag.str.strip + "." %>
+  <% else %>
+     <%= tag.str.strip + ", " %>
+  <% end %> 
+<% end %>
+<% end %>
+<br>
+<br>
+<br>
+<% if @image.user.name == current_user.name %>
+   <%= link_to 'Edit', edit_image_path(@image) %> |
+<% end %>
+<%= link_to 'Back', images_path %>
 </span></center>
-
-
