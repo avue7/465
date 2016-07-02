@@ -27,7 +27,7 @@
 <% end %>
 <br>
 <br>
-<% if !@image.tags.empty? %>
+<% if @image.tags.empty? == false %>
 <font color="blue"><b>TAGS:</b></font>
 <% @image.tags.each do |tag| %>
   <% if @image.tags.last == tag %>
@@ -44,8 +44,10 @@
   <% if @image.user.name == current_user.name %>
     <%= link_to 'Edit', edit_image_path(@image) %> |
     <%= link_to 'Back To Main', root_path %>
+  <% else %>
+    <%= link_to 'Back To Main', root_path %>
   <% end %>
 <% else %>
-  <%= link_to 'Back To Main', root_path %>
+  <%= link_to 'Back to Main', root_path %>
 <% end %>
 </span></center>

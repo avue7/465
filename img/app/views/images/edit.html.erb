@@ -22,8 +22,21 @@
     Mark image as <strong><font color="red">PRIVATE</font></strong>?
     <%= f.check_box :private %>
   <% end %>
- <br>
- <br>
+<p>
+<!-- TAGS ARE HERE -->
+<% if !@image.tags.empty? %>
+<font color="blue"><b>TAGS:</b></font>
+<% @image.tags.each do |tag| %>
+  <% if @image.tags.last == tag %>
+    <%= link_to (tag.str.strip), edit_tag_path(tag.id) %>.
+  <% else %>
+    <%= link_to (tag.str.strip), edit_tag_path(tag.id) %>,
+  <% end %>
+<% end %>
+<% end %>
+<p><font color="white">Note: click on tags to edit.</font>
+</p>
+</p>
  <center><div class="actions">
     <%= f.submit %>
   </div></center></div>

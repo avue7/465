@@ -1,14 +1,13 @@
-<p id="notice"><%= notice %></p>
+<center><p id="notice"><%= notice %></p>
+<center>
+<h2>TAG</h2>
 
+<div class="box">
+  <strong>This tag is:</strong>
+<font color="blue"><%= @tag.str %></font>
+</div>
 <p>
-  <strong>Str:</strong>
-  <%= @tag.str %>
+<%= link_to 'Back To Tag Edit', edit_tag_path(@tag) %> |
+<%= link_to 'Back to Listing Images', root_path %> 
 </p>
 
-<p>
-  <strong>Image:</strong>
-  <%= @tag.image_id %>
-</p>
-
-<%= link_to 'Edit', edit_tag_path(@tag) %> |
-<%= link_to 'Back', tags_path %>

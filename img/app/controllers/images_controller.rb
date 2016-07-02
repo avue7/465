@@ -17,7 +17,8 @@ class ImagesController < ApplicationController
     @image = Image.find(params[:id])
     @image_owner = current_user
     @users = User.all
-    @tags  = Tag.all
+    @tags = Tag.all
+    @tag = Tag.find(params[:id])
   end
   # GET /images/new
   def new
@@ -27,7 +28,8 @@ class ImagesController < ApplicationController
   # GET /images/1/edit
   def edit
     @image = Image.find(params[:id])
-    @image.user = current_user 
+    @image.user = current_user     
+    @tags = Tag.all
   end
 
   # POST /images
