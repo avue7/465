@@ -1,6 +1,6 @@
 <center>
 <h2>Sign up</h2>
-
+<div class="box">
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
 
@@ -32,7 +32,8 @@
   </div>
 <% end %>
 
-<%= render "devise/shared/links" %>
+<center><%= render "devise/shared/links" %></center>
 <br>
-<%= link_to "Back to Main", root_path %>
+</div>
+<%= link_to "Back to Listing Images", root_path %>
 </center>

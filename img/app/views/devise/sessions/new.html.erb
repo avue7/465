@@ -5,6 +5,7 @@
 
 <center>
  <h2>Log in</h2>
+<div class="box">
 <%= form_for(resource, as: resource_name, url: session_path(resource_name)) do |f| %>
   <%= devise_error_messages! %>
   <div class="field">
@@ -25,8 +26,7 @@
     <%= f.submit "Log in" %>
   </div>
 <% end %>
-</body>
-
-<%= render "devise/shared/links" %></center>
+<center><%= render "devise/shared/links" %></center>
 <br>
-<center><%= link_to "Back", root_path %></center>
+</div>
+<center><%= link_to "Back To Listing Images", root_path %></center>
