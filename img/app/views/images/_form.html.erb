@@ -1,5 +1,5 @@
 <!-- app/views/images#_form -->
-<%= form_for(@image) do |f| %>
+<center><%= form_for(@image) do |f| %>
   <% if @image.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@image.errors.count, "error") %> prohibited this image from being saved:</h2>
@@ -12,14 +12,21 @@
     </div>
   <% end %>
 
-  <div>
+
+<div class="box">
   <%= f.file_field :uploaded_file %>
-  </div>
+    <br>
+    <br>
+    Note: Please check only one box or else default will be private.
+    <br>
     Mark image as  <strong><font color="blue">PUBLIC</font></strong>?
     <%= f.check_box :private, {checked: :private},"false", "true" %><br>
     Mark image as <strong><font color="red">PRIVATE</font></strong>?
     <%= f.check_box :private %>
-  <div class="actions">
+  <br>
+  <br>
+  <center><div class="actions">
     <%= f.submit %>
-  </div>
+  </div></center></div>
 <% end %>
+

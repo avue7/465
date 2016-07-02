@@ -1,4 +1,4 @@
 class ImageUser < ActiveRecord::Base
-  belongs_to :user
-  belongs_to :image
+  belongs_to :user, dependent: :destroy
+  belongs_to :image, dependent: :destroy
 end

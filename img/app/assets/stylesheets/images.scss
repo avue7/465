@@ -17,3 +17,12 @@ img {
     /* Make the caption a block so it occupies its own line. */
     display: block;
 }
+div.box {
+    background-color: lightgrey;
+    width: 300px;
+    border: 25px solid green;
+    padding: 25px;
+    margin: 25px;
+    text-align: left;
+}
+

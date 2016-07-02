@@ -1,4 +1,4 @@
-<h1>Edit Image</h1>
+<center><h1>Edit Image</h1>
 <%= form_for(@image) do |f| %>
   <% if @image.errors.any? %>
     <div id="error_explanation">
@@ -11,8 +11,7 @@
       </ul>
     </div>
   <% end %>
-
-  <%= @image.user.name %><br>
+<div class="box">
   <% if @image.private? %>
     This image is currently marked as <strong><font color="red">PRIVATE</font>.
     </strong><br>
@@ -23,9 +22,11 @@
     Mark image as <strong><font color="red">PRIVATE</font></strong>?
     <%= f.check_box :private %>
   <% end %>
-  <div class="actions">
+ <br>
+ <br>
+ <center><div class="actions">
     <%= f.submit %>
-  </div>
+  </div></center></div>
 <% end %>
 
 
