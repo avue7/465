@@ -1,7 +1,6 @@
 <center><h1>Editing Tag</h1>
 <div class="box">
 <%= render 'form' %>
+<%= link_to 'Destroy', @tag, method: :delete, data: { confirm: 'Are you sure?' } %>
 </div>
-<%= link_to 'Back to Editing Image', edit_image_path %> |
-<%= link_to 'Back to Listing Images', root_path %> |
-<%= link_to 'Show', @tag %>
+<%= link_to 'Back to Listing Images', root_path %>

@@ -44,14 +44,12 @@
   <% end %>
  <% end %><br>
 <p><font color="white">Note: click on tags to edit.</font></p>
-<%= link_to "New tag", [:new, @tag] %>
+<%= link_to "New tag", new_image_tag_url(@image) %>
 <center><div class="actions">
     <%= f.submit %>
   </div></center>
 </div>
 <%end%>
-<%= @image.tags.ids %><br>
-Image id is:<%= @image.id %><br>
 <center><%= link_to 'Back', :back %> |
 <%= link_to 'Back To Main', images_path %>
 

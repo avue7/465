@@ -15,6 +15,7 @@ class TagsController < ApplicationController
   # GET /tags/new
   def new
     @tag = Tag.new
+    @image = Image.find(params[:image_id])
   end
 
   # GET /tags/1/edit
@@ -24,18 +25,20 @@ class TagsController < ApplicationController
 
   # POST /tags
   def create
-    @tag = Tag.new(tag_params)
+    @image = Image.find(params[:image_id])
+    @tag = @image.tags.new(tag_params)
+    @tag.image_id = params[:image_id] 
     if @tag.save
-      redirect_to @tag, notice: 'Tag was successfully created.'
+      redirect_to @tag.image, notice: 'Tag was successfully created.'
     else
-      render :new
+      redirect_to @tag.image, notice: 'Tag was not created.'
     end
   end
 
   # PATCH/PUT /tags/1
   def update
     if @tag.update(tag_params)
-      redirect_to @tag, notice: 'Tag was successfully updated.'
+      redirect_to @tag.image, notice: 'Tag was successfully updated.'
     else
       render :edit
     end
@@ -44,7 +47,7 @@ class TagsController < ApplicationController
   # DELETE /tags/1
   def destroy
     @tag.destroy
-    redirect_to tags_url, notice: 'Tag was successfully destroyed.'
+    redirect_to @tag.image, notice: 'Tag was successfully destroyed.'
   end
 
   private

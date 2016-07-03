@@ -3,7 +3,7 @@ class Image < ActiveRecord::Base
   has_many :users, :through => :image_users
   has_many :image_users
   belongs_to :user
-
+  
   def user_does_not_have_permission
    users_array = []
    users_array = User.all - self.users

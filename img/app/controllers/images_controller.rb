@@ -29,6 +29,7 @@ class ImagesController < ApplicationController
   def new
     @image = Image.new
     @tag = Tag.new
+    @tags = @image.tags.new
   #  @tag = Tag.create(image_id: @image.id, str: :tags) 
   end
 

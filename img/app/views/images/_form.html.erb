@@ -15,12 +15,8 @@
 
 <div class="box">
   <%= f.file_field :uploaded_file %>
-  <div class="field">
-    <%= f.number_field :user_id %>
-  </div>
     <br>
-    <br>
-    Note: Please check only one box or else default will be private.
+    <font color="white"> Note: Please check only one box or else default will be private.  </font>
     <br>
     Mark image as  <strong><font color="blue">PUBLIC</font></strong>?
     <%= f.check_box :private, {checked: :private},"false", "true" %><br>
