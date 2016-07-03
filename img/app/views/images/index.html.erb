@@ -16,7 +16,6 @@
          <div class="image">
 	 <%= link_to (image_tag root_url + "/images/" + image.filename, size: "100x100", alt: image.filename), image %></a>
  	 <span class="caption">
-	 <center><%= image.filename %></center>
          <%= link_to 'Edit', edit_image_path(image) %>
          <%= link_to 'Destroy', image, method: :delete, data: { confirm: 'Are you sure?' } %></span></div>
       <% else %>
@@ -58,7 +57,6 @@
      <div class="image">
      <%= link_to (image_tag root_url + "/images/" + image.filename, size: "100x100", alt: image.filename), image %>
      <span class="caption">
-     <center><%= image.filename %><br>
      <% @users.each do |owner| %>
          <% if owner.id == image.user_id %> 
 	   Owner is: <%= owner.name %>
