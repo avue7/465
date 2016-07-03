@@ -3,13 +3,13 @@ class TagsController < ApplicationController
 
   # GET /tags
   def index
-   # load "#{Rails.root}/db/words.rb"
-   # @tag = gen_tag
+   @tags = Tag.all
   end
 
   # GET /tags/1
   def show
    @tag = Tag.find(params[:id])
+   @tags = Tag.all
   end
 
   # GET /tags/new

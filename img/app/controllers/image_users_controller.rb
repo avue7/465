@@ -25,17 +25,19 @@ class ImageUsersController < ApplicationController
   # POST /image_users.json
   def create
     @image_user = ImageUser.new(image_user_params)
+    @image_user.image_id = params[:image_id]
+   
     if @image_user.save
-      redirect_to @image_user, notice: 'Image user was successfully created.'
+      redirect_to @image_user.image, notice: 'Image user was successfully created.'
     else
-       render :new
+      redirect_to @image_user.image, notice: 'Image user was not created.'
     end
   end
 
   # PATCH/PUT /image_users/1
   def update
     if @image_user.update(image_user_params)
-       redirect_to @image_user, notice: 'Image user was successfully updated.'
+       redirect_to @image_user.image, notice: 'Image user was successfully updated.'
     else
        render :edit
     end
@@ -55,6 +57,6 @@ class ImageUsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def image_user_params
-      params.require(:image_user).permit(:image_id_id, :user_id_id)
+      params.require(:image_user).permit(:image_id_id, :user_id)
     end
 end

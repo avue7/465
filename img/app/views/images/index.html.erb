@@ -12,7 +12,7 @@
 <% if user_signed_in? == true %>
 <center><h1><%= current_user.name + "'s" + " Images" %></h1></center>
  <% @images.each do |image| %>
-      <% if image.user_id == @user %>
+      <% if image.user_id == current_user.id %>
          <div class="image">
 	 <%= link_to (image_tag root_url + "/images/" + image.filename, size: "100x100", alt: image.filename), image %></a>
  	 <span class="caption">
@@ -25,19 +25,17 @@
    <% end %>
 <% end %>
 <br>
-
-<% if user_signed_in? == true and @image_users%>
+<% if user_signed_in? == true%>
   <center><h1>
   <%="Private Images " + current_user.name + " Can See" %>
   </h1></center>
-  <% @images.each do |image| %>    
-       <% if image.user_id == @image_users %>
+  <% @image_users.each do |image| %>    
+       <% if image.user_id == current_user.id %>
          <div class="image">
-	 <%= link_to (image_tag root_url + "/images/" + image.filename, size: "100x100", alt: image.filename), image %>
+	 <%= link_to (image_tag root_url + "/images/" + image.image.filename, size: "100x100", alt: image.image.filename), image.image %>
  	 <span class="caption">
-	 <center><%= image.filename %></center>
          <% @users.each do |owner| %>
-         <% if owner.id == image.user_id %> 
+         <% if owner.id == image.image.user_id %> 
 	   Owner is: <%= owner.name %>
 	 <% end %>
          <% end %>
@@ -52,7 +50,9 @@
 
 <center><h1>Public Images<h1></center>
 <% @images.each do |image| %>
-  <% if image.private? %>
+  <% if (user_signed_in? == true) and (image.user_id == current_user.id) %>
+     <% next %>
+  <% elsif image.private? %>
      <% next %>
   <% else %>
      <div class="image">

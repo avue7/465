@@ -2,10 +2,11 @@ class ImagesController < ApplicationController
   before_action :set_image, only: [:show, :edit, :update, :destroy]
 
   # GET /images
-  def index
+  def index 
     @images = Image.all
+#    @image = Image.find(current_user.id)
     if user_signed_in? == true
-      @user = current_user.id
+      @image_users = ImageUser.all
     end
     @users = User.all
     @tags = Tag.all
@@ -15,14 +16,20 @@ class ImagesController < ApplicationController
   def show
     load "#{Rails.root}/db/words.rb"
     @image = Image.find(params[:id])
+    @user = current_user
     @image_owner = current_user
     @users = User.all
     @tags = Tag.all
     @tag = Tag.find(params[:id])
+    @image_users = ImageUser.all
+    @image_user = []
+    @image_user = @image.image_users.new
   end
   # GET /images/new
   def new
     @image = Image.new
+    @tag = Tag.new
+  #  @tag = Tag.create(image_id: @image.id, str: :tags) 
   end
 
   # GET /images/1/edit
@@ -30,6 +37,8 @@ class ImagesController < ApplicationController
     @image = Image.find(params[:id])
     @image.user = current_user     
     @tags = Tag.all
+    @images = Image.all
+    @user_names = User.all.collect { |x| [x.name,x.id] }
   end
 
   # POST /images
@@ -67,7 +76,7 @@ class ImagesController < ApplicationController
   # DELETE /images/1
   def destroy
     @image.destroy
-      redirect_to images_url, notice: 'Image was successfully destroyed.'
+      redirect_to images_path, notice: 'Image was successfully destroyed.'
   end
 
   private

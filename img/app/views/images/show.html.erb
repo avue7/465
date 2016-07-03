@@ -8,8 +8,6 @@
    <%= link_to 'Sign Up', new_user_registration_path %>
 <% end %>
 </center>
-<br>
-
 <center><%= image_tag root_url + "/images/" + @image.filename, size: "500x500", alt: @image.filename %></center>
 <center><span class="caption">
 <% if user_signed_in? == true %>
@@ -25,8 +23,8 @@
       <% end %>
    <% end %>
 <% end %>
-<br>
-<br>
+
+<center><div class="box">
 <% if @image.tags.empty? == false %>
 <font color="blue"><b>TAGS:</b></font>
 <% @image.tags.each do |tag| %>
@@ -37,17 +35,41 @@
   <% end %> 
 <% end %>
 <% end %>
+
+<% if false %>
+<center>
+I just learned a new trick into commenting..... :) anywase this
+is for debugging purposes only. I needed to see if all params were filled
+<%= @image.image_users.each do |iu| %>
+   <% if !iu.new_record?%>
+      <%= iu.user_id %>
+   <% end %>
+<% end %></p>
+comment ends here!!!!
+<% end %>
 <br>
-<br>
-<br>
+<%-# This was the ultimate pain, great stuff to know tho -%>
+<%-# Adding users to the image_users table with the help of -%> 
+<%-# a function that lives inside this class models -%>
 <% if user_signed_in? == true %>
   <% if @image.user.name == current_user.name %>
-    <%= link_to 'Edit', edit_image_path(@image) %> |
-    <%= link_to 'Back To Main', root_path %>
+    <font color="white"> Add users to private images below:</font> 
+    <%= render 'image_users/form' %>
+  <% end %>
+<% end %>
+
+</div>
+<center>
+<% if user_signed_in? == true %>
+  <% if @image.user.name == current_user.name %>
+    <%= link_to 'Edit This Image', edit_image_path(@image)%> |
+    <%= link_to 'Delete This Image', @image, method: :delete, data: { confirm: 'Are you sure?'} %> |
+    <%= link_to "Back to Main", root_path %>
   <% else %>
-    <%= link_to 'Back To Main', root_path %>
+    <%= link_to "Back to Main", root_path %>
   <% end %>
 <% else %>
-  <%= link_to 'Back to Main', root_path %>
+    <%= link_to "Back to Main", root_path %>
 <% end %>
 </span></center>
+

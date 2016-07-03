@@ -1,5 +1,15 @@
+<center><p id="notice"><%= notice %></p>
+<!-- Check to see if user is logged in, if so let them upload and edit profile -->
 <center><h1>Edit Image</h1>
-<%= form_for(@image) do |f| %>
+<% if user_signed_in? == true %>
+   <%= link_to 'New Image', new_image_path %> |
+   <%= link_to 'Edit Profile', edit_user_registration_path %>
+<% else %> <!-- If user not log in give them option to log in or sign up -->
+   <%= link_to 'Log In', new_user_session_path %> |
+   <%= link_to 'Sign Up', new_user_registration_path %>
+<% end %>
+
+<%= form_for(@image)  do |f| %>
   <% if @image.errors.any? %>
     <div id="error_explanation">
       <h2><%= pluralize(@image.errors.count, "error") %> prohibited this image from being saved:</h2>
@@ -22,26 +32,26 @@
     Mark image as <strong><font color="red">PRIVATE</font></strong>?
     <%= f.check_box :private %>
   <% end %>
-<p>
 <!-- TAGS ARE HERE -->
-<% if !@image.tags.empty? %>
-<font color="blue"><b>TAGS:</b></font>
-<% @image.tags.each do |tag| %>
-  <% if @image.tags.last == tag %>
-    <%= link_to (tag.str.strip), edit_tag_path(tag.id) %>.
-  <% else %>
-    <%= link_to (tag.str.strip), edit_tag_path(tag.id) %>,
+<p><% if !@image.tags.empty? %>
+  <font color="blue"><b>TAGS:</b></font>
+  <% @image.tags.each do |t| %>
+    <% if @image.tags.last == t %>
+       <%= link_to (t.str.strip), edit_tag_path(t.id) %>.
+    <% else %>
+       <%= link_to (t.str.strip), edit_tag_path(t.id) %>,
+   <% end %>
   <% end %>
-<% end %>
-<% end %>
-<p><font color="white">Note: click on tags to edit.</font>
-</p>
-</p>
- <center><div class="actions">
+ <% end %><br>
+<p><font color="white">Note: click on tags to edit.</font></p>
+<%= link_to "New tag", [:new, @tag] %>
+<center><div class="actions">
     <%= f.submit %>
-  </div></center></div>
-<% end %>
-
-
+  </div></center>
+</div>
+<%end%>
+<%= @image.tags.ids %><br>
+Image id is:<%= @image.id %><br>
+<center><%= link_to 'Back', :back %> |
 <%= link_to 'Back To Main', images_path %>
 
