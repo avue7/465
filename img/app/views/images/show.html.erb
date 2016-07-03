@@ -48,11 +48,12 @@ is for debugging purposes only. I needed to see if all params were filled
 comment ends here!!!!
 <% end %>
 <br>
+<br>
 <%-# This was the ultimate pain, great stuff to know tho -%>
 <%-# Adding users to the image_users table with the help of -%> 
 <%-# a function that lives inside this class models -%>
 <% if user_signed_in? == true %>
-  <% if @image.user.name == current_user.name %>
+<center>  <% if @image.user.name == current_user.name %>
     <font color="white"> Add users to private images below:</font> 
     <%= render 'image_users/form' %>
   <% end %>

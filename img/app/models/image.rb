@@ -9,4 +9,14 @@ class Image < ActiveRecord::Base
    users_array = User.all - self.users
    users_array.map {|user| [user.name,user.id]}
   end
+
+  def delete_users_from_image_users
+   users_array = []
+   users_array = ImageUser.all - self.image_users
+   users_array.map do |user|
+     if user.image.id == user.user.id
+       [user.user.name, user.user.id]
+     end
+   end
+  end
 end

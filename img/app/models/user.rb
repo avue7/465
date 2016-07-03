@@ -5,6 +5,6 @@ class User < ActiveRecord::Base
          :recoverable, :rememberable, :trackable, :validatable
   # Validate to make sure name field for signing up user is not blank
   validates :name, presence: true
-  has_many :images, dependent: :destroy
-  has_many :image_users
+  has_many :images
+  has_many :image_users 
 end

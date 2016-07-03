@@ -15,6 +15,7 @@ class ImageUsersController < ApplicationController
   # GET /image_users/new
   def new
     @image_user = ImageUser.new
+    @current_user = current_user
   end
 
   # GET /image_users/1/edit
@@ -46,7 +47,7 @@ class ImageUsersController < ApplicationController
   # DELETE /image_users/1
   def destroy
     @image_user.destroy
-    redirect_to image_users_url, notice: 'Image user was successfully destroyed.'
+    redirect_to @image_user.image, notice: 'Image user was successfully destroyed.'
   end
 
   private
@@ -57,6 +58,6 @@ class ImageUsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def image_user_params
-      params.require(:image_user).permit(:image_id_id, :user_id)
+      params.require(:image_user).permit(:image_id, :user_id)
     end
 end

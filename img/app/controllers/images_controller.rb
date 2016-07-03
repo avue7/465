@@ -39,7 +39,8 @@ class ImagesController < ApplicationController
     @image.user = current_user     
     @tags = Tag.all
     @images = Image.all
-    @user_names = User.all.collect { |x| [x.name,x.id] }
+    @user_all = User.all
+    @image_users = ImageUser.all
   end
 
   # POST /images
