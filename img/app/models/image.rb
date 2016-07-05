@@ -7,7 +7,7 @@ class Image < ActiveRecord::Base
   def user_does_not_have_permission
    users_array = []
    users_array = User.all - self.users
-   users_array.map {|user| [user.name,user.id]}
+   users_array.map {|user| [user.name + "("+ user.email + ")",user.id]}
   end
 
   def delete_users_from_image_users
