@@ -1,0 +1,31 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Wildfires</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Burnt acreage</th>
+      <th>Year</th>
+      <th>State</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @wildfires.each do |wildfire| %>
+      <tr>
+        <td><%= wildfire.burnt_acreage %></td>
+        <td><%= wildfire.year %></td>
+        <td><%= wildfire.state %></td>
+        <td><%= link_to 'Show', wildfire %></td>
+        <td><%= link_to 'Edit', edit_wildfire_path(wildfire) %></td>
+        <td><%= link_to 'Destroy', wildfire, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Wildfire', new_wildfire_path %>
