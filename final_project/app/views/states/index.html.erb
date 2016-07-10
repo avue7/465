@@ -1,7 +1,16 @@
+<div id="user_nav">
+<% if user_signed_in? %>
+  <div class="signed_in">
+  <strong>Signed in as: </font><font color="blue"><%= current_user.email %></font>. Not you?
+  </strong>
+  <%= link_to "Sign out", destroy_user_session_path, style: 'color:#8B0000;', method: :delete%>
+  </div>
+<% end %>
+</div>
+
 <center>
-<div class="notice">
-<p id="notice"><%= notice %></p></div>
- 
+<br>
+<br> 
 <div class="header_orange">
   <h2>Droughts Are Us</h2>
   (We Don't Know Squat About Droughts!!!)
@@ -20,6 +29,9 @@
   </strong></p>
  </div>
  <div class="sign_in_box">
+   <div class="notice">
+     <p id="notice"><%= notice %></p>
+   </div>
   <% if user_signed_in? == false %>
     <%= render 'devise/sessions/form' %>
   <% else %>

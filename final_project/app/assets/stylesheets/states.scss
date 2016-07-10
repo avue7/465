@@ -1,10 +1,23 @@
 body { 
 background-image: url(image_path('Drought.jpg'));
-background-size: cover; 
+background-size: 130%;
+ 
 }
 
 div.notice {
     background-color: yellow;
+}
+
+div.signed_in {
+    background-color: gray;
+    text-align: left;
+    width: 350px;
+}
+
+div.signed_up_and_in {
+    background-color: gray;
+    text-align: left;
+    width: 120px;
 }
 
 div.header_orange {
