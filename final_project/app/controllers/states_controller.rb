@@ -4,6 +4,9 @@ class StatesController < ApplicationController
   # GET /states
   def index
     @states = State.all
+    if user_signed_in?
+      @user = current_user
+    end
   end
 
   # GET /states/1

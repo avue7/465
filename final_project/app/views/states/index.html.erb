@@ -1,37 +1,33 @@
-<p id="notice"><%= notice %></p>
+<center>
+<div class="notice">
+<p id="notice"><%= notice %></p></div>
+ 
+<div class="header_orange">
+  <h2>Droughts Are Us</h2>
+  (We Don't Know Squat About Droughts!!!)
+ </div>
+</center>
+<center>
+<div id="main_container">
+ <div class="mission_box">
+ <h1><b>Our Mission</b></h1>
+ <br><br>
+  <p><strong> We'd like to present drought information in an easy to understand way. In
+  doing so, we hope to educate our users on drought related weather patterns
+  that have occurred over the past years and raise awareness about drought 
+  severity in the United States. Users in search of real estate may use our 
+  service to find a location that is typical to not suffer during dry times.
+  </strong></p>
+ </div>
+ <div class="sign_in_box">
+  <% if user_signed_in? == false %>
+    <%= render 'devise/sessions/form' %>
+  <% else %>
+    <b>Welcome<font color="blue"><%= " " + @user.name %></font>!</b>
+  <% end %>
+ </div>
+ <div style="clear: both;"></div>
+</div>
 
-
-<h1>Droughts Are Us</h1>
-
-<table>
-  <thead>
-   <th>Our Mission</th>
-    <p>We'd like to present drought information in an easy to understand way.<p>
-    <tr>
-      <th>State name</th>
-      <th>State abbreviation</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @states.each do |state| %>
-      <tr>
-        <td><%= state.state_name %></td>
-        <td><%= state.state_abbreviation %></td>
-        <td><%= state.user %></td>
-        <td><%= link_to 'Show', state %></td>
-        <td><%= link_to 'Edit', edit_state_path(state) %></td>
-        <td><%= link_to 'Destroy', state, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
- <% if user_signed_in? == false %>
-   <%= render 'devise/sessions/form' %>
- <% end %>
-  </tbody>
-</table>
-
-<br>
-
+</center>
 <%= link_to 'New State', new_state_path %>
