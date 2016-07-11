@@ -26,14 +26,23 @@ div.header_orange {
     color: white;
     padding: 5px;
     text-align: center;
+    border: 2px solid #cccccc;
     border-radius: 25px;
+}
+
+div.gif_header_black {
+    background-color: black;
+    width: 500px;
+    color: red;
+    padding: 5px;
+    text-align: center;
 }
 
 #main_container {
  width: 1000px;
  height: 350px;
  margin: 10px auto;
- border: 2px solid #cccccc;
+ /*border: 2px solid #cccccc;*/
  padding: 5px;
 }
 
@@ -68,43 +77,40 @@ div.box {
 }
 
 #gif_container {
- width: 1000px;
- height: 350px;
- margin: 10px auto;
- border: 2px solid #cccccc;
- padding: 5px;
+ width: 1150px;
+ margin: 5px auto;
+ padding: 1px;
 }
 
 .drought_box {
- background-color: white;
+ background-color: black;
  float: left;
- height: 300px;
- width: 600px;
+ height:350px;
+ width: 350px;
  padding: 10px;
  border: 1px solid black;
- margin: 10px;
+ margin: 5px;
  text-align: center;
- border-radius: 25px;
 }
 
 .precipitation_box {
- background-color: white;
- float: right;
- width: 300px;
+    background-color: black;
+ float: left;
+ height: 350px;
+ width: 350px;
  padding: 10px;
  border: 1px solid black;
- margin: 10px;
+ margin: 5px;
  text-align: center;
- border-radius: 25px;
 }
 
 .temperature_box {
- background-color: white;
- float: right;
- width: 300px;
+ background-color: black;
+ float: left;
+ height: 350px;
+ width: 350px;
  padding: 10px;
  border: 1px solid black;
- margin: 10px;
+ margin: 5px;
  text-align: center;
- border-radius: 25px;
 }

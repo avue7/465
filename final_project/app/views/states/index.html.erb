@@ -1,3 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+<script>
+$(document).ready(function()
+{
+    $("#drought_animated").hover(
+        function()
+        {
+            $(this).attr("src", "/images/Drought.gif");
+        },
+        function()
+        {
+            $(this).attr("src", "/images/drought.png");
+        });
+    $("#precipitation_animated").hover(
+        function()
+        {
+            $(this).attr("src", "/images/Precipitation.gif");
+        },
+        function()
+        {
+            $(this).attr("src", "/images/precipitation.png");
+        });
+    $("#temperature_animated").hover(
+        function()
+        {
+            $(this).attr("src", "/images/Temperature.gif");
+        },
+        function()
+        {
+            $(this).attr("src", "/images/temperature.png");
+        });
+});
+</script>
+</head>
 <div id="user_nav">
 <% if user_signed_in? %>
   <div class="signed_in">
@@ -24,7 +61,8 @@
   <p><strong> We'd like to present drought information in an easy to understand way. In
   doing so, we hope to educate our users on drought related weather patterns
   that have occurred over the past years and raise awareness about drought 
-  severity in the United States. Users in search of real estate may use our 
+  severity in the United States. Our application may be used for many things.
+  Such as...users in search of real estate may use our 
   service to find a location that is typical to not suffer during dry times.
   </strong></p>
  </div>
@@ -55,4 +93,25 @@
   <div style="clear: both;"></div>
 </div>
 </center>
+<!-- GIF IMAGES GOES BELOW THIS LINE -->
+<div id="gif_container">
+<center>
+  <div class="gif_header_black"><h3>Changes of weather in the United States<h3></div>
+    <div class="drought_box">
+    <body>
+       <img id="drought_animated" src="/images/drought.png" alt="drought" height="350" width="350" >
+    </div>
+  <div class="precipitation_box">
+     <img id="precipitation_animated" src="/images/precipitation.png" alt="precipitation" height="350" width="350" >
+  </div>
+  <div class="temperature_box">
+     <img id="temperature_animated" src="/images/temperature.png" alt="temperature" height="350" width="350" >
+  </div>
+  </body>
+  </center>
+  <div style="clear: all;"></div>
+</div>
+
+
+
 <%= link_to 'New State', new_state_path %>
