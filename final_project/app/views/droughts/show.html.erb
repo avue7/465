@@ -1,0 +1,19 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Climate:</strong>
+  <%= @drought.climate_id %>
+</p>
+
+<p>
+  <strong>Drought severity:</strong>
+  <%= @drought.drought_severity %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @drought.year %>
+</p>
+
+<%= link_to 'Edit', edit_drought_path(@drought) %> |
+<%= link_to 'Back', droughts_path %>

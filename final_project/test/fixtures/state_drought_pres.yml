@@ -1,0 +1,9 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  climate_id_id: 
+  state_abbreviation_id: 
+
+two:
+  climate_id_id: 
+  state_abbreviation_id: 

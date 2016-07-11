@@ -1,0 +1,29 @@
+<%= form_for(@drought) do |f| %>
+  <% if @drought.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@drought.errors.count, "error") %> prohibited this drought from being saved:</h2>
+
+      <ul>
+      <% @drought.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :climate_id %><br>
+    <%= f.number_field :climate_id %>
+  </div>
+  <div class="field">
+    <%= f.label :drought_severity %><br>
+    <%= f.text_field :drought_severity %>
+  </div>
+  <div class="field">
+    <%= f.label :year %><br>
+    <%= f.number_field :year %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

@@ -1,0 +1,2 @@
+module StateDroughtPresHelper
+end

@@ -1,5 +1,5 @@
 class State < ActiveRecord::Base
-  has_many :users
+  belongs_to :user
   has_many :annual_burnt_acres
   has_many :wildfires
 end

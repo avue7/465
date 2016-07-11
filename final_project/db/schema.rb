@@ -11,27 +11,37 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160710004727) do
+ActiveRecord::Schema.define(version: 20160711070307) do
 
-  create_table "annual_burnt_acres", force: :cascade do |t|
-    t.decimal  "acres_per_sq_miles"
+  create_table "droughts", force: :cascade do |t|
+    t.integer  "climate_id"
+    t.decimal  "drought_severity"
     t.integer  "year"
-    t.integer  "state_id"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
+
+  create_table "precipitations", force: :cascade do |t|
+    t.integer  "climate_id"
+    t.decimal  "inches_per_year"
+    t.integer  "year"
+    t.datetime "created_at",      null: false
+    t.datetime "updated_at",      null: false
+  end
+
+  create_table "state_drought_pres", force: :cascade do |t|
+    t.integer  "climate_id"
+    t.string   "state_abbreviation"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end
-
-  add_index "annual_burnt_acres", ["state_id"], name: "index_annual_burnt_acres_on_state_id"
 
   create_table "states", force: :cascade do |t|
     t.string   "state_name"
     t.string   "state_abbreviation"
-    t.integer  "user_id"
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end
-
-  add_index "states", ["user_id"], name: "index_states_on_user_id"
 
   create_table "users", force: :cascade do |t|
     t.string   "name",                   default: "", null: false
@@ -51,15 +61,5 @@ ActiveRecord::Schema.define(version: 20160710004727) do
 
   add_index "users", ["email"], name: "index_users_on_email", unique: true
   add_index "users", ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
-
-  create_table "wildfires", force: :cascade do |t|
-    t.decimal  "burnt_acreage"
-    t.integer  "year"
-    t.integer  "state_id"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-  end
-
-  add_index "wildfires", ["state_id"], name: "index_wildfires_on_state_id"
 
 end
