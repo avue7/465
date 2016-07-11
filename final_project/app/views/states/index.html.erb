@@ -12,7 +12,7 @@
 <br>
 <br> 
 <div class="header_orange">
-  <h2>Droughts Are Us</h2>
+  <h1>Droughts Are Us</h1>
   (We Don't Know Squat About Droughts!!!)
  </div>
 </center>
@@ -35,11 +35,24 @@
   <% if user_signed_in? == false %>
     <%= render 'devise/sessions/form' %>
   <% else %>
-    <b>Welcome<font color="blue"><%= " " + @user.name %></font>!</b>
+  <center>
+     <b>Welcome<font color="blue"><%= " " + @user.name %></font>!
+     <%= link_to "Sign out", destroy_user_session_path, style: 'color:#8B0000;', method: :delete%>    
+       <div class="box">
+         <center>
+         <%= image_tag @weather_lookup.icon %><br>
+         <font color="white">
+         It is currently <font color="yellow"><%= @weather_lookup.temperature %>&#x2109</font>
+         <br>
+         in Chico, CA!</font></center><br>
+         Condition is: <%= @weather_lookup.condition %><br>
+         Feels like: <font color="yellow"><%= @weather_lookup.feelslike %>&#x2109</font>
+       </div>
+       <%= link_to "Edit Profile", edit_user_registration_path %>
+  </center>
   <% end %>
- </div>
- <div style="clear: both;"></div>
+  </div>
+  <div style="clear: both;"></div>
 </div>
-
 </center>
 <%= link_to 'New State', new_state_path %>

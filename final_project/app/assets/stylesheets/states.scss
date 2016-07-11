@@ -31,7 +31,7 @@ div.header_orange {
 
 #main_container {
  width: 1000px;
- height: 400px;
+ height: 350px;
  margin: 10px auto;
  border: 2px solid #cccccc;
  padding: 5px;
@@ -52,7 +52,6 @@ div.header_orange {
 .sign_in_box {
  background-color: white;
  float: right;
- height: 250px;
  width: 300px;
  padding: 10px;
  border: 1px solid black;
@@ -61,12 +60,51 @@ div.header_orange {
  border-radius: 25px;
 }
 div.box {
-    background-color: lightgrey;
-    width: 300px;
-    border: 25px solid green;
-    padding: 15px;
-    margin: 50px;
-    text-align: left;
-    display: inline-block;
-   
+    background-color: grey;
+    width: 220px;
+    padding: 5px;
+    margin: 10px;
+    text-align: center;   
+}
+
+#gif_container {
+ width: 1000px;
+ height: 350px;
+ margin: 10px auto;
+ border: 2px solid #cccccc;
+ padding: 5px;
+}
+
+.drought_box {
+ background-color: white;
+ float: left;
+ height: 300px;
+ width: 600px;
+ padding: 10px;
+ border: 1px solid black;
+ margin: 10px;
+ text-align: center;
+ border-radius: 25px;
+}
+
+.precipitation_box {
+ background-color: white;
+ float: right;
+ width: 300px;
+ padding: 10px;
+ border: 1px solid black;
+ margin: 10px;
+ text-align: center;
+ border-radius: 25px;
+}
+
+.temperature_box {
+ background-color: white;
+ float: right;
+ width: 300px;
+ padding: 10px;
+ border: 1px solid black;
+ margin: 10px;
+ text-align: center;
+ border-radius: 25px;
 }

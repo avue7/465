@@ -4,10 +4,12 @@
 
 <center><div class="header_sign_up">
  <h1>Sign Up: You Won't Regret It!</h1>
-</div>
+</div></center>
 
+<center>
 <div id="sign_up_box">
 <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+  <center>
   <%= devise_error_messages! %>
 
   <div class="field">
@@ -27,8 +29,9 @@
   </div>
 
   <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
+    <%= f.submit "Sign up" %><br>
+    <font color="blue">-OR- </font><br>
+    <%= link_to "Sign In", new_user_session_path %>
+  </div></center>
 <% end %>
 </div>
-<%= render "devise/shared/links" %>

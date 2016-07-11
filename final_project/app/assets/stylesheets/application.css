@@ -46,7 +46,6 @@ div.header_sign_up {
 /* This class .field is nested in id: sign_up_box */
 #sign_up_box .field input {
    width: 450px;
-   height: 40px;
    position: center;
    font-size: 20px;
    padding: 10px;

@@ -7,6 +7,7 @@ class StatesController < ApplicationController
     if user_signed_in?
       @user = current_user
     end
+    @weather_lookup = WeatherLookup.new
   end
 
   # GET /states/1

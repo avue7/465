@@ -1,16 +1,25 @@
-<h2>Forgot your password?</h2>
+<div class="back_home">
+  <%= link_to "Back To Home Page", root_path %>
+</div>
 
+<center><div class="header_sign_up">
+<h2>Forgot your password?</h2>
+</div>
+</center>
+
+<center><div id="sign_up_box">
 <%= form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :post }) do |f| %>
+  <center>
   <%= devise_error_messages! %>
 
   <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true %>
+    <%= f.email_field :email, placeholder: "ENTER EMAIL HERE", autocomplete:"off", autofocus: true %>
   </div>
 
   <div class="actions">
-    <%= f.submit "Send me reset password instructions" %>
+    <%= f.submit "Send me reset password instructions" %><br>
+    <font color="blue">-OR-</font><br>
+    <%= link_to "Sign Up", new_user_registration_path %>
   </div>
 <% end %>
-
-<%= render "devise/shared/links" %>
+</div>
