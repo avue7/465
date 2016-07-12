@@ -1,8 +1,21 @@
 class Drought < ActiveRecord::Base
-   belongs_to :region
+   belongs_to :users
+   has_many :users, :through => :drought_users
+   has_many :drought_users
+   validates :climate_id, presence: true
+   validates :drought_severity, presence: true
+   validates :year, presence: true
+ 
 
-   def all_states_list
-    states_array = State.all
-    states_array.map {|state| [state.state_abbreviation + " (" + state.state_name + ")", state.id]}
+def self.search(search)
+  where("name LIKE ?", "%#{search}%") 
+  where("content LIKE ?", "%#{search}%")
+end
+ 
+
+   def user_does_not_have_permission
+    users_array = []
+    users_array = User.all - self.users
+    users_array.map {|user| [user.name + " (" + user.email + ")", user.id]}
    end
 end

@@ -5,17 +5,12 @@ class DroughtsController < ApplicationController
   def index
     @states = State.all
     @droughts = Drought.all
+    @users = User.all
     @state_names = []
-    @droughts.each do |drought|
-      @states.each do |state|
-        if drought.state_id == state.id
-          @state_names.push(state.state_name)
-        end
-      end
-     end
-   # @drought = Drought.find(params[:id])i
     @drought = Drought.new
-    @user = current_user
+    if current_user.id == 1
+      current_user.update_attribute :admin, true
+    end
   end
 
   # GET /droughts/1
@@ -38,12 +33,11 @@ class DroughtsController < ApplicationController
   # POST /droughts.json
   def create
     @drought = Drought.new(drought_params)
-    @drought.state_id = params[:state_id]
-
+    @drought.user_id = current_user.id if current_user
       if @drought.save
         redirect_to droughts_path, notice: "Drought successfuly created."
       else
-        redirect_to droughts_path, notice: "Droughts not created."
+        redirect_to new_drought_path, notice: "Droughts not created. Cannot be EMPTY!"
       end
   end
 
@@ -53,7 +47,7 @@ class DroughtsController < ApplicationController
         if @drought.update(drought_params)
         redirect_to droughts_path, notice: "Drought successfuly edited."
       else
-        redirect_to droughts_path, notice: "Droughts not created."
+        redirect_to droughts_path, notice: "Droughts not updated. Cannot be empty!"
       end
 
   end
@@ -67,6 +61,7 @@ class DroughtsController < ApplicationController
       format.json { head :no_content }
     end
   end
+
 
   private
     # Use callbacks to share common setup or constraints between actions.

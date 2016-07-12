@@ -4,7 +4,8 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller? 
   # before_filter :authenticate_user!
   protect_from_forgery with: :exception
- 
+  
+  config.time_zone = 'Pacific Time (US & Canada)'
   def configure_permitted_parameters
     devise_parameter_sanitizer.for(:sign_up) << :name
     devise_parameter_sanitizer.for(:account_update) << :name

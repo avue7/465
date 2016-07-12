@@ -2,9 +2,13 @@
 <html>
 <head>
 <script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/highcharts-more.js"></script>
 <script src="https://code.highcharts.com/modules/exporting.js"></script>
 <script src="droughts.html.js"></script>
 </head>
+
+
+<div id="container" style="height: 400px; margin: auto; min-width: 310px; max-width: 600px"></div>
 
 <div class="back_home">
   <%= link_to "Back To Home Page", root_path %>
@@ -18,7 +22,7 @@
 <p id="notice"><%= notice %></p>
 </div>
 <div class="header">
-<table><h3><font color="blue"><%= @user.name %>'s</font> Searchable Drought Listing</h3></table></div>
+<table><h3><font color="blue"><%= current_user.name %>'s</font> Drought Info Listing</h3></table></div>
 
 
 <%= link_to "Add New Drought Info", new_drought_path, {:style=>'color:#FF0000;', :class => "css_class"} %><br>
@@ -34,33 +38,48 @@ th, td {
 }
 </style>
 
-<div style="height:400px;overflow:auto;">
+<div style="height:500px;overflow:auto;">
 <table align="center" style="width:80%">
 <thead>
     <tr>
       <th>State_Abbrev.</th>
       <th>Climate</th>
-      <th>Drought_Severity</th>
+      <th>Drought_Severity<br>
+          (based on <font color="blue"><a href="http://www.cpc.ncep.noaa.gov/products/monitoring_and_data/drought.shtml">PDSI</a></font>)</th>
       <th>Year</th>
-      <th colspan="3">Options</th>
+      <th>Created By</th>
+      <th>Creation Date</th>
+      <th>Creation Time</th>
+        <th  colspan="3">Options</th>
     </tr>
   </thead>
 
    <tbody>
-       <tr>
-        <% @droughts.each do |drought| %>
+      
+      <% @droughts.each do |drought| %>
+      <tr>
         <td><%= drought.state_abbreviation %></td>
 	<td><%= drought.climate_id %></td>
         <td><%= drought.drought_severity %></td>
         <td><%= drought.year %></td>
-        <td><%= link_to 'Show', drought %></td>
-        <td><%= link_to 'Edit', edit_drought_path(drought) %></td>
-        <td><%= link_to 'Destroy', drought, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-        </tr>
+        <% @users.each do |user| %>
+        <% if user.id == drought.user_id %>
+        <td><%= user.name %></td>
         <% end %>
+        <% end %>
+        <td><%= drought.created_at.strftime("Created on %m/%d/%Y") %></td>
+        <td><%= drought.created_at.strftime("at %I:%M%p") %></td> 
+        <% if current_user.admin? %>
+          <td><%= link_to 'Edit', edit_drought_path(drought) %></td>
+          <td><%= link_to 'Destroy', drought, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% elsif current_user.id == drought.user_id %>
+          <td><%= link_to 'Edit', edit_drought_path(drought) %></td>
+          <td><%= link_to 'Destroy', drought, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
+      </tr>
+      <% end %>
    </tbody>
 </table>
 </div>
 <br>
-
 

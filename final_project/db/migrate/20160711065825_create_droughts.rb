@@ -5,7 +5,7 @@ class CreateDroughts < ActiveRecord::Migration
       t.decimal :drought_severity
       t.integer :year
       t.string  :state_abbreviation
-      t.references :state
+      t.references :user
 
       t.timestamps null: false
     end

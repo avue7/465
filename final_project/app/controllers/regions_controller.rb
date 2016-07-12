@@ -70,4 +70,3 @@ class RegionsController < ApplicationController
     def region_params
       params.require(:region).permit(:climate_id, :state_abbreviation, :state_id, :drought_id)
     end
-end

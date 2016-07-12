@@ -25,14 +25,12 @@ class DroughtUsersController < ApplicationController
   # POST /drought_users.json
   def create
     @drought_user = DroughtUser.new(drought_user_params)
+    @drought_user.drought_id = params[:drought_id]
 
-    respond_to do |format|
       if @drought_user.save
-        format.html { redirect_to @drought_user, notice: 'Drought user was successfully created.' }
-        format.json { render :show, status: :created, location: @drought_user }
+         redirect_to @drought_user.drought, notice: "Drought User was successfully created."
       else
-        format.html { render :new }
-        format.json { render json: @drought_user.errors, status: :unprocessable_entity }
+         redirect_to @drought_user.drought, notice: "Drought User was not created."
       end
     end
   end
@@ -42,11 +40,9 @@ class DroughtUsersController < ApplicationController
   def update
     respond_to do |format|
       if @drought_user.update(drought_user_params)
-        format.html { redirect_to @drought_user, notice: 'Drought user was successfully updated.' }
-        format.json { render :show, status: :ok, location: @drought_user }
+        redirect_to @drought_user.drought, notice: "Drought User was Succesfullyupdated."
       else
-        format.html { render :edit }
-        format.json { render json: @drought_user.errors, status: :unprocessable_entity }
+        render :edit
       end
     end
   end
@@ -55,10 +51,7 @@ class DroughtUsersController < ApplicationController
   # DELETE /drought_users/1.json
   def destroy
     @drought_user.destroy
-    respond_to do |format|
-      format.html { redirect_to drought_users_url, notice: 'Drought user was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+      redirect_to @drought_user.drought, notice: "Drought user was safely DESTROYED."
   end
 
   private
@@ -69,6 +62,5 @@ class DroughtUsersController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def drought_user_params
-      params.require(:drought_user).permit(:user_id, :droughts_id)
+      params.require(:drought_user).permit(:user_id, :drought_id)
     end
-end

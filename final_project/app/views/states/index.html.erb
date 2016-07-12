@@ -86,8 +86,9 @@ $(document).ready(function()
          Condition is: <%= @weather_lookup.condition %><br>
          Feels like: <font color="yellow"><%= @weather_lookup.feelslike %>&#x2109</font>
        </div>
-       <%= link_to "Edit Profile", edit_user_registration_path %> |
-       <%= link_to "Drought Query Page", droughts_path %><br>
+      | <%= link_to "Edit Profile", edit_user_registration_path %> |
+       <%= link_to "Drought Info Page", droughts_path %> |<br> |
+       <%= link_to "Rain Info Page" %> |
   </center>
   <% end %>
   </div>

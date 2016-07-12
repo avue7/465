@@ -1,4 +1,6 @@
 <center><div id="sign_up_box">
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
 <%= form_for(@drought) do |f| %>
   <% if @drought.errors.any? %>
     <div id="error_explanation">
