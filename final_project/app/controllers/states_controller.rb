@@ -13,10 +13,13 @@ class StatesController < ApplicationController
   # GET /states/1
   # GET /states/1.json
   def show
+    @state = State.find(params[:id])
+    @region = @state.regions.new
   end
 
   # GET /states/new
   def new
+    @states = State.all
     @state = State.new
   end
 
@@ -31,11 +34,9 @@ class StatesController < ApplicationController
 
     respond_to do |format|
       if @state.save
-        format.html { redirect_to @state, notice: 'State was successfully created.' }
-        format.json { render :show, status: :created, location: @state }
+        redirect_to @region.state, notice: "Division was successfully Created."
       else
-        format.html { render :new }
-        format.json { render json: @state.errors, status: :unprocessable_entity }
+        redirect_to @region.state, notice: "Enrollment was not Created."
       end
     end
   end

@@ -1,0 +1,14 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>User:</strong>
+  <%= @drought_user.user %>
+</p>
+
+<p>
+  <strong>Droughts:</strong>
+  <%= @drought_user.droughts %>
+</p>
+
+<%= link_to 'Edit', edit_drought_user_path(@drought_user) %> |
+<%= link_to 'Back', drought_users_path %>

@@ -1,0 +1,33 @@
+<%= form_for(@region) do |f| %>
+  <% if @region.errors.any? %>
+    <div id="error_explanation">
+      <h2><%= pluralize(@region.errors.count, "error") %> prohibited this region from being saved:</h2>
+
+      <ul>
+      <% @region.errors.full_messages.each do |message| %>
+        <li><%= message %></li>
+      <% end %>
+      </ul>
+    </div>
+  <% end %>
+
+  <div class="field">
+    <%= f.label :climate_id %><br>
+    <%= f.number_field :climate_id %>
+  </div>
+  <div class="field">
+    <%= f.label :state_abbreviation %><br>
+    <%= f.text_field :state_abbreviation %>
+  </div>
+  <div class="field">
+    <%= f.label :state_id %><br>
+    <%= f.text_field :state_id %>
+  </div>
+  <div class="field">
+    <%= f.label :drought_id %><br>
+    <%= f.text_field :drought_id %>
+  </div>
+  <div class="actions">
+    <%= f.submit %>
+  </div>
+<% end %>

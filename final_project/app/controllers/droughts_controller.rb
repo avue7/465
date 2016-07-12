@@ -2,14 +2,26 @@ class DroughtsController < ApplicationController
   before_action :set_drought, only: [:show, :edit, :update, :destroy]
 
   # GET /droughts
-  # GET /droughts.json
   def index
+    @states = State.all
     @droughts = Drought.all
+    @state_names = []
+    @droughts.each do |drought|
+      @states.each do |state|
+        if drought.state_id == state.id
+          @state_names.push(state.state_name)
+        end
+      end
+     end
+   # @drought = Drought.find(params[:id])i
+    @drought = Drought.new
+    @user = current_user
   end
 
   # GET /droughts/1
-  # GET /droughts/1.json
   def show
+    @droughts = Drought.all
+    @drought = Drought.find(params[:id])
   end
 
   # GET /droughts/new
@@ -19,36 +31,31 @@ class DroughtsController < ApplicationController
 
   # GET /droughts/1/edit
   def edit
+   @states = State.all
   end
 
   # POST /droughts
   # POST /droughts.json
   def create
     @drought = Drought.new(drought_params)
+    @drought.state_id = params[:state_id]
 
-    respond_to do |format|
       if @drought.save
-        format.html { redirect_to @drought, notice: 'Drought was successfully created.' }
-        format.json { render :show, status: :created, location: @drought }
+        redirect_to droughts_path, notice: "Drought successfuly created."
       else
-        format.html { render :new }
-        format.json { render json: @drought.errors, status: :unprocessable_entity }
+        redirect_to droughts_path, notice: "Droughts not created."
       end
-    end
   end
 
   # PATCH/PUT /droughts/1
   # PATCH/PUT /droughts/1.json
   def update
-    respond_to do |format|
-      if @drought.update(drought_params)
-        format.html { redirect_to @drought, notice: 'Drought was successfully updated.' }
-        format.json { render :show, status: :ok, location: @drought }
+        if @drought.update(drought_params)
+        redirect_to droughts_path, notice: "Drought successfuly edited."
       else
-        format.html { render :edit }
-        format.json { render json: @drought.errors, status: :unprocessable_entity }
+        redirect_to droughts_path, notice: "Droughts not created."
       end
-    end
+
   end
 
   # DELETE /droughts/1
@@ -69,6 +76,6 @@ class DroughtsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def drought_params
-      params.require(:drought).permit(:climate_id, :drought_severity, :year)
+      params.require(:drought).permit(:climate_id, :drought_severity, :year, :state_abbreviation)
     end
 end

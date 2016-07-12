@@ -1,3 +1,4 @@
+<center><div id="sign_up_box">
 <%= form_for(@drought) do |f| %>
   <% if @drought.errors.any? %>
     <div id="error_explanation">
@@ -23,7 +24,11 @@
     <%= f.label :year %><br>
     <%= f.number_field :year %>
   </div>
+  <div class="field">
+     <%= f.collection_select :state_abbreviation, State.all, :state_abbreviation, :state_abbreviation %>
+  </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+</div>

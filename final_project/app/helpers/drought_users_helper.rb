@@ -1,0 +1,2 @@
+module DroughtUsersHelper
+end

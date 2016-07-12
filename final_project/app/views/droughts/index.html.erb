@@ -1,31 +1,66 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="https://code.highcharts.com/highcharts.js"></script>
+<script src="https://code.highcharts.com/modules/exporting.js"></script>
+<script src="droughts.html.js"></script>
+</head>
+
+<div class="back_home">
+  <%= link_to "Back To Home Page", root_path %>
+</div>
+<center><div class="header_sign_up">
+<h1>Droughts</h1>
+</div></center>
+<center>
+<div class="droughts_box">
+<div class="notice">
 <p id="notice"><%= notice %></p>
+</div>
+<div class="header">
+<table><h3><font color="blue"><%= @user.name %>'s</font> Searchable Drought Listing</h3></table></div>
 
-<h1>Listing Droughts</h1>
 
-<table>
-  <thead>
+<%= link_to "Add New Drought Info", new_drought_path, {:style=>'color:#FF0000;', :class => "css_class"} %><br>
+
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+}
+th, td {
+    padding: 5px;
+}
+</style>
+
+<div style="height:400px;overflow:auto;">
+<table align="center" style="width:80%">
+<thead>
     <tr>
+      <th>State_Abbrev.</th>
       <th>Climate</th>
-      <th>Drought severity</th>
+      <th>Drought_Severity</th>
       <th>Year</th>
-      <th colspan="3"></th>
+      <th colspan="3">Options</th>
     </tr>
   </thead>
 
-  <tbody>
-    <% @droughts.each do |drought| %>
-      <tr>
-        <td><%= drought.climate_id %></td>
+   <tbody>
+       <tr>
+        <% @droughts.each do |drought| %>
+        <td><%= drought.state_abbreviation %></td>
+	<td><%= drought.climate_id %></td>
         <td><%= drought.drought_severity %></td>
         <td><%= drought.year %></td>
         <td><%= link_to 'Show', drought %></td>
         <td><%= link_to 'Edit', edit_drought_path(drought) %></td>
         <td><%= link_to 'Destroy', drought, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
+        </tr>
+        <% end %>
+   </tbody>
 </table>
-
+</div>
 <br>
 
-<%= link_to 'New Drought', new_drought_path %>
+

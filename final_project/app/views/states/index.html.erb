@@ -86,14 +86,17 @@ $(document).ready(function()
          Condition is: <%= @weather_lookup.condition %><br>
          Feels like: <font color="yellow"><%= @weather_lookup.feelslike %>&#x2109</font>
        </div>
-       <%= link_to "Edit Profile", edit_user_registration_path %>
+       <%= link_to "Edit Profile", edit_user_registration_path %> |
+       <%= link_to "Drought Query Page", droughts_path %><br>
   </center>
   <% end %>
   </div>
   <div style="clear: both;"></div>
 </div>
 </center>
+
 <!-- GIF IMAGES GOES BELOW THIS LINE -->
+
 <div id="gif_container">
 <center>
   <div class="gif_header_black"><h3>Changes in weather in the United States<h3></div>
@@ -112,6 +115,3 @@ $(document).ready(function()
   <div style="clear: all;"></div>
 </div>
 
-
-
-<%= link_to 'New State', new_state_path %>

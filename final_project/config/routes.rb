@@ -1,9 +1,9 @@
 Rails.application.routes.draw do
-  resources :precipitations
+  resources :drought_users
   resources :droughts
   devise_for :users, :controllers => {:registrations => :registrations } 
   resources :states do
-    resources :state_drought_pres
+    resources :regions, shallow: true
   end
   root 'states#index'
 end

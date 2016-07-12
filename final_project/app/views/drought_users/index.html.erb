@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Drought Users</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Droughts</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @drought_users.each do |drought_user| %>
+      <tr>
+        <td><%= drought_user.user %></td>
+        <td><%= drought_user.droughts %></td>
+        <td><%= link_to 'Show', drought_user %></td>
+        <td><%= link_to 'Edit', edit_drought_user_path(drought_user) %></td>
+        <td><%= link_to 'Destroy', drought_user, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Drought user', new_drought_user_path %>
