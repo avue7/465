@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20160712115733) do
+ActiveRecord::Schema.define(version: 20160713090521) do
 
   create_table "drought_users", force: :cascade do |t|
     t.integer  "user_id"
@@ -32,6 +32,18 @@ ActiveRecord::Schema.define(version: 20160712115733) do
     t.datetime "created_at",         null: false
     t.datetime "updated_at",         null: false
   end
+
+  create_table "precipitations", force: :cascade do |t|
+    t.integer  "climate_id"
+    t.decimal  "per_year"
+    t.integer  "year"
+    t.string   "state_abbreviation"
+    t.integer  "user_id"
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+  end
+
+  add_index "precipitations", ["user_id"], name: "index_precipitations_on_user_id"
 
   create_table "regions", force: :cascade do |t|
     t.integer  "climate_id"

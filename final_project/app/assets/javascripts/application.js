@@ -10,8 +10,6 @@
 // Read Sprockets README (https://github.com/rails/sprockets#sprockets-directives) for details
 // about supported directives.
 //
-//= require highcharts
-//= require chartkick
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
@@ -19,3 +17,6 @@
 //= require fusioncharts/fusioncharts
 //= require fusioncharts/fusioncharts.charts
 //= require fusioncharts/themes/fusioncharts.theme.fint
+//= require highcharts/highcharts
+//= require highcharts/highstock
+//= require chartkick

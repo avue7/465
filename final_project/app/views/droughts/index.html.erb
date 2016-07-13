@@ -1,17 +1,8 @@
-<!DOCTYPE html>
-<html>
-<head>
-<script src="https://code.highcharts.com/highcharts.js"></script>
-<script src="https://code.highcharts.com/highcharts-more.js"></script>
-<script src="https://code.highcharts.com/modules/exporting.js"></script>
-<script src="droughts.html.js"></script>
-</head>
-
-
-<div id="container" style="height: 400px; margin: auto; min-width: 310px; max-width: 600px"></div>
-
 <div class="back_home">
-  <%= link_to "Back To Home Page", root_path %>
+ <%= link_to "Back To Home Page", root_path %><br>
+<center>-or-<center>
+ <%= link_to "Sign out", destroy_user_session_path, style: 'color:#8B0000;', method: :delete%>
+
 </div>
 <center><div class="header_sign_up">
 <h1>Droughts</h1>
@@ -23,9 +14,11 @@
 </div>
 <div class="header">
 <table><h3><font color="blue"><%= current_user.name %>'s</font> Drought Info Listing</h3></table></div>
-
-
-<%= link_to "Add New Drought Info", new_drought_path, {:style=>'color:#FF0000;', :class => "css_class"} %><br>
+<center><font color="red">Attention:</font> You have been given the priviledge to add and edit your own findings. Please ensure the authenticity of all data before inserting. Ask admin for admin priviledges. <br>
+</center>
+<%= link_to "Add New Drought Info", new_drought_path, {:style=>'color:#FF0000;', :class => "css_class"} %> |
+<%= link_to "View Graph Based on Drought Severity by State", drought_path(1), {:style=>'color:#FF0000;', :class => "css_class"} %>  
+<br><br>
 
 <style>
 table, th, td {
@@ -50,7 +43,7 @@ th, td {
       <th>Created By</th>
       <th>Creation Date</th>
       <th>Creation Time</th>
-        <th  colspan="3">Options</th>
+        <th  colspan="2">Options</th>
     </tr>
   </thead>
 
@@ -80,6 +73,7 @@ th, td {
       <% end %>
    </tbody>
 </table>
+</div>
 </div>
 <br>
 

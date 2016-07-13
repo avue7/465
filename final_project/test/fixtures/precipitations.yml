@@ -2,10 +2,14 @@
 
 one:
   climate_id: 1
-  inches_per_year: 9.99
+  per_year: 9.99
   year: 1
+  state_abbreviation: MyString
+  user_id: 
 
 two:
   climate_id: 1
-  inches_per_year: 9.99
+  per_year: 9.99
   year: 1
+  state_abbreviation: MyString
+  user_id: 

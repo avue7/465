@@ -1,0 +1,29 @@
+<p id="notice"><%= notice %></p>
+
+<p>
+  <strong>Climate:</strong>
+  <%= @precipitation.climate_id %>
+</p>
+
+<p>
+  <strong>Per year:</strong>
+  <%= @precipitation.per_year %>
+</p>
+
+<p>
+  <strong>Year:</strong>
+  <%= @precipitation.year %>
+</p>
+
+<p>
+  <strong>State abbreviation:</strong>
+  <%= @precipitation.state_abbreviation %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @precipitation.user %>
+</p>
+
+<%= link_to 'Edit', edit_precipitation_path(@precipitation) %> |
+<%= link_to 'Back', precipitations_path %>

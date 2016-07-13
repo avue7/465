@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  resources :precipitations
+  resources :precipitations
   resources :droughts
   devise_for :users, :controllers => {:registrations => :registrations } 
   resources :states do

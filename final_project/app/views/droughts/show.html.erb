@@ -1,19 +1,15 @@
 <p id="notice"><%= notice %></p>
 
-<p>
-  <strong>Climate:</strong>
-  <%= @drought.climate_id %>
-</p>
+<div class="back_home">
+  <%= link_to "Back To Home Page", root_path %><br>
+<center>-or-</center>
+<%= link_to 'Back', droughts_path %> 
+</div>
+<center><div class="header_sign_up">
+<h1>Droughts Graph Page</h1>
+</div></center>
 
-<p>
-  <strong>Drought severity:</strong>
-  <%= @drought.drought_severity %>
-</p>
 
-<p>
-  <strong>Year:</strong>
-  <%= @drought.year %>
-</p>
+<%= high_chart("my_id3", @chart2)  %>
 
-<%= link_to 'Edit', edit_drought_path(@drought) %> |
-<%= link_to 'Back', droughts_path %>
+

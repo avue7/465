@@ -1,0 +1,35 @@
+<p id="notice"><%= notice %></p>
+
+<h1>Listing Precipitations</h1>
+
+<table>
+  <thead>
+    <tr>
+      <th>Climate</th>
+      <th>Per year</th>
+      <th>Year</th>
+      <th>State abbreviation</th>
+      <th>User</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @precipitations.each do |precipitation| %>
+      <tr>
+        <td><%= precipitation.climate_id %></td>
+        <td><%= precipitation.per_year %></td>
+        <td><%= precipitation.year %></td>
+        <td><%= precipitation.state_abbreviation %></td>
+        <td><%= precipitation.user %></td>
+        <td><%= link_to 'Show', precipitation %></td>
+        <td><%= link_to 'Edit', edit_precipitation_path(precipitation) %></td>
+        <td><%= link_to 'Destroy', precipitation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<br>
+
+<%= link_to 'New Precipitation', new_precipitation_path %>

@@ -5,6 +5,8 @@ config.assets.compile = true
 # Generate digests for assets URLs
 config.assets.digest = true
 
+config.action_controller.relative_url_root = '/final_project'
+
   # Code is not reloaded between requests.
   config.cache_classes = true
 

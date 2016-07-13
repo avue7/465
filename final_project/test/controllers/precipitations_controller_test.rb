@@ -18,7 +18,7 @@ class PrecipitationsControllerTest < ActionController::TestCase
 
   test "should create precipitation" do
     assert_difference('Precipitation.count') do
-      post :create, precipitation: { climate_id: @precipitation.climate_id, inches_per_year: @precipitation.inches_per_year, year: @precipitation.year }
+      post :create, precipitation: { climate_id: @precipitation.climate_id, per_year: @precipitation.per_year, state_abbreviation: @precipitation.state_abbreviation, user_id: @precipitation.user_id, year: @precipitation.year }
     end
 
     assert_redirected_to precipitation_path(assigns(:precipitation))
@@ -35,7 +35,7 @@ class PrecipitationsControllerTest < ActionController::TestCase
   end
 
   test "should update precipitation" do
-    patch :update, id: @precipitation, precipitation: { climate_id: @precipitation.climate_id, inches_per_year: @precipitation.inches_per_year, year: @precipitation.year }
+    patch :update, id: @precipitation, precipitation: { climate_id: @precipitation.climate_id, per_year: @precipitation.per_year, state_abbreviation: @precipitation.state_abbreviation, user_id: @precipitation.user_id, year: @precipitation.year }
     assert_redirected_to precipitation_path(assigns(:precipitation))
   end
 
