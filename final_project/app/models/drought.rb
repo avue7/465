@@ -1,11 +1,11 @@
 class Drought < ActiveRecord::Base
-   belongs_to :users
+   belongs_to :user
    has_many :users, :through => :drought_users
    has_many :drought_users
    validates :climate_id, presence: true
    validates :drought_severity, presence: true
    validates :year, presence: true
- 
+   validates :state_abbreviation, presence: true 
 
 def self.search(search)
   where("name LIKE ?", "%#{search}%") 

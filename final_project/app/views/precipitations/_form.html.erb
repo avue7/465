@@ -1,3 +1,6 @@
+<center><div id="sign_up_box">
+<p class="notice"><%= notice %></p>
+<p class="alert"><%= alert %></p>
 <%= form_for(@precipitation) do |f| %>
   <% if @precipitation.errors.any? %>
     <div id="error_explanation">
@@ -24,14 +27,10 @@
     <%= f.number_field :year %>
   </div>
   <div class="field">
-    <%= f.label :state_abbreviation %><br>
-    <%= f.text_field :state_abbreviation %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.text_field :user_id %>
+     <%= f.collection_select :state_abbreviation, State.all, :state_abbreviation, :state_abbreviation %>
   </div>
   <div class="actions">
     <%= f.submit %>
   </div>
 <% end %>
+</div>

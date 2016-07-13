@@ -1,35 +1,80 @@
+<div class="back_home">
+ <%= link_to "Back To Home Page", root_path %><br>
+<center>-or-<center>
+ <%= link_to "Sign out", destroy_user_session_path, style: 'color:#8B0000;', method: :delete%>
+
+</div>
+<center><div class="header_sign_up">
+<h1>Precipitation</h1>
+</div></center>
+<center>
+<div class="droughts_box">
+<div class="notice">
 <p id="notice"><%= notice %></p>
+</div>
+<div class="header">
+<table><h3><font color="blue"><%= current_user.name %>'s</font> Precipitation Info Listing</h3></table></div>
+<center><font color="red">Attention:</font> You have been given the priviledge to add and edit your own findings. Please ensure the authenticity of all data before inserting. Ask admin for admin priviledges. <br>
+</center>
+<%= link_to "Add New Precipitation Info", new_precipitation_path, {:style=>'color:#FF0000;', :class => "css_class"} %> |
+<%= link_to "View Graph Based on Rainfall Per Inch by State", precipitation_path(1), {:style=>'color:#FF0000;', :class => "css_class"} %> |
+<%= link_to "Go to Droughts Page", droughts_path, {:style=>'color:#FF0000;', :class => "css_class"} %>
+<br><br>
 
-<h1>Listing Precipitations</h1>
+<style>
+table, th, td {
+    border: 1px solid black;
+    border-collapse: collapse;
+    text-align: center;
+}
+th, td {
+    padding: 5px;
+}
+</style>
 
-<table>
-  <thead>
+<div style="height:500px;overflow:auto;">
+<table align="center" style="width:80%">
+<thead>
     <tr>
+      <th>State_Abbrev.</th>
       <th>Climate</th>
-      <th>Per year</th>
+      <th>Inch_per_Year</th>
       <th>Year</th>
-      <th>State abbreviation</th>
-      <th>User</th>
-      <th colspan="3"></th>
+      <th>Created By</th>
+      <th>Creation Date</th>
+      <th>Creation Time</th>
+        <th  colspan="2">Options</th>
     </tr>
   </thead>
 
-  <tbody>
-    <% @precipitations.each do |precipitation| %>
+   <tbody>
+      
+      <% @precipitations.each do |precipitation| %>
       <tr>
-        <td><%= precipitation.climate_id %></td>
+        <td><%= precipitation.state_abbreviation %></td>
+	<td><%= precipitation.climate_id %></td>
         <td><%= precipitation.per_year %></td>
         <td><%= precipitation.year %></td>
-        <td><%= precipitation.state_abbreviation %></td>
-        <td><%= precipitation.user %></td>
-        <td><%= link_to 'Show', precipitation %></td>
-        <td><%= link_to 'Edit', edit_precipitation_path(precipitation) %></td>
-        <td><%= link_to 'Destroy', precipitation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% @users.each do |user| %>
+        <% if user.id == precipitation.user_id %>
+        <td><%= user.name %></td>
+        <% end %>
+        <% end %>
+        <td><%= precipitation.created_at.strftime("Created on %m/%d/%Y") %></td>
+        <td><%= precipitation.created_at.strftime("at %I:%M%p") %></td> 
+        <% if current_user.admin? %>
+          <td><%= link_to 'Edit', edit_precipitation_path(precipitation) %></td>
+          <td><%= link_to 'Destroy', precipitation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% elsif current_user.id == precipitation.user_id %>
+          <td><%= link_to 'Edit', edit_precipitation_path(precipitation) %></td>
+          <td><%= link_to 'Destroy', precipitation, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <% end %>
       </tr>
-    <% end %>
-  </tbody>
+      <% end %>
+   </tbody>
 </table>
-
+</div>
+</div>
 <br>
 
-<%= link_to 'New Precipitation', new_precipitation_path %>
+

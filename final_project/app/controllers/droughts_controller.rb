@@ -18,45 +18,72 @@ class DroughtsController < ApplicationController
   def show
     @droughts = Drought.all
     @drought = Drought.find(params[:id])
+    @precipitations = Precipitation.all
+#######################################################
+###precipitations below this
+    #### BY STATE FOR CHART 4 
+    p_sorted_values = Array.new
+    p_sorted_states = Array.new
+    p_sorted_data = Array.new
 
-    drought_abbrev = Array.new
-    drought_severity = Array.new
-    drought_year = Array.new
-    @droughts.each do |d|
-      drought_abbrev.push [d.state_abbreviation]
-      drought_severity.push [d.drought_severity.to_f]
-      drought_year.push [d.year]
-    end
-    
-    drought_year.sort!
-    drought_severity.sort!
-    ###########################################################################
-    data_array = Array.new
-    
-   # array_by_serverity = Array.new
-    sorted_serv = Array.new
-    array_by_serverity =  @droughts.sort_by {|x| x.drought_severity.to_f}
+    array_by_state =  @precipitations.sort_by {|x| x.state_abbreviation}
 
-    array_by_serverity.each do |d|
-        sorted_serv.push [d.state_abbreviation, d.climate_id, d.drought_severity.to_f, d.year]
+    array_by_state.each do |d|
+        p_sorted_data.push [d.state_abbreviation, d.climate_id, d.per_year.to_f, d.year]
+        p_sorted_states.push [d.state_abbreviation]
+        p_sorted_values.push [d.per_year.to_f]  #use this for only values
     end
 
-    @droughts.each do |d|
-	data_array.push [d.state_abbreviation, d.climate_id, d.drought_severity.to_f, d.year]
+    ### BY VALUE FOR CHART 2
+    p_sorted_values_by_values = Array.new
+    p_sorted_data_by_values = Array.new
+
+    p_array_by_value = @precipitations.sort_by {|p| p.per_year}
+    
+    p_array_by_value.each do |p|
+       p_sorted_values_by_values.push [p.per_year]  #use this for values
+       p_sorted_data_by_values.push [p.state_abbreviation, p.climate_id, p.per_year, p.year]
+    end
+#####precipitation is above this
+############################################################
+  # DO BY STATE
+    array_by_state =  @droughts.sort_by {|x| x.state_abbreviation}
+   
+    d_sorted_states = Array.new
+    d_sorted_data = Array.new
+    sorted_string = Array.new 
+    array_by_state.each do |d|
+        sorted_string.push [d.state_abbreviation, d.climate_id, d.drought_severity.to_f, d.year]      
+        d_sorted_states.push [d.state_abbreviation]
+        d_sorted_data.push [d.drought_severity.to_f]
+    end
+   
+    # DO BY VALUE for chart 2.
+    array_by_value = @droughts.sort_by {|x| x.drought_severity.to_f}
+  
+    d_sort_by_value_data = Array.new
+    d_sort_by_value_value = Array.new
+    
+    array_by_value.each do |d|
+       d_sort_by_value_data.push [d.state_abbreviation, d.climate_id, d.drought_severity.to_f, d.year] 
+       d_sort_by_value_value.push [d.drought_severity.to_f]
     end
     
     #data_array2 = [["one", 1.0], ["two", 2.0], ["three", 3.0],["four", 4.0],["five", 5.0], ["size", 6.0]]
+
    @chart4 = LazyHighCharts::HighChart.new('column') do |f|
-      f.series(:name=>'John',:data=> [3, 20, 3, 5, 4, 10, 12 ])
-      f.series(:name=>'Jane',:data=>[1, 3, 4, 3, 3, 5, 4,-46] )     
-      f.title({ :text=>"example test title from controller"})
+      f.series(:name=>'Precipitation',:data=> p_sorted_values)
+      f.xAxis(:categories => p_sorted_states)
+      f.series(:name=>'Drought',:data=> d_sorted_data)     
+      f.title({ :text=>"Ratio Between Precipitation and Drought"})
       f.options[:chart][:defaultSeriesType] = "column"
-      f.plot_options({:column=>{:stacking=>"percent"}})
-       end
+      f.plot_options({:column=>{:stacking=>"normal"}})
+     end
+
     @chart2 = LazyHighCharts::HighChart.new('pie') do |f|
       f.title(:text => "National Drought Severity Summary (STATE, CLIMATE_ID, PDSI, YEAR)")
-      f.xAxis(:categories => sorted_serv)
-      f.series(:name => "PDSI", :yAxis => 0, :data => drought_severity)
+      f.xAxis(:categories => d_sort_by_value_data)
+      f.series(:name => "PDSI", :yAxis => 0, :data => d_sort_by_value_value)
     #  f.series(:name => "Population in Millions", :yAxis => 1, :data => [310, 127, 1340, 81, 65])
 
       f.yAxis [
@@ -67,7 +94,7 @@ class DroughtsController < ApplicationController
       f.legend(:align => 'right', :verticalAlign => 'top', :y => 75, :x => -50, :layout => 'vertical',)
       f.chart({:defaultSeriesType=>"column"})
     end
-   #############################################################################
+#############################################################################
   end
 
   # GET /droughts/new
